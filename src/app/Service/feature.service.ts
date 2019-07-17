@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import { Maven } from './get-xdes.service';
+import { Maven, Xde } from './get-xdes.service';
 import { HttpClient } from '@angular/common/http';
 
 @Injectable({
@@ -19,4 +19,10 @@ export interface Feature {
   id:number;
   maven:Maven;
   name:String;
+  XdeSet:FeatureXde[];
+}
+export interface FeatureXde {
+  id:number;
+  xde:Xde;
+  type:String;
 }

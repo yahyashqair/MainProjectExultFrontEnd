@@ -10,8 +10,7 @@ export class FeatureComponent implements OnInit {
   feature:Feature;
   features: Feature[];
   data: any;
-
-
+  
   constructor(private get: FeatureService) { }
 
   ngOnInit() {
