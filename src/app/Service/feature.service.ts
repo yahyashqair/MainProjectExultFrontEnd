@@ -19,10 +19,10 @@ export interface Feature {
   id:number;
   maven:Maven;
   name:String;
-  XdeSet:FeatureXde[];
+  xdeSet:FeatureXde[];
 }
 export interface FeatureXde {
   id:number;
   xde:Xde;
-  type:String;
+  typeOfRelation:String;
 }
