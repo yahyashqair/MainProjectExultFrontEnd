@@ -1,3 +1,24 @@
-<p>
-  feature works!
-</p>
+<div class="container">
+    <div class="row">
+        <div class="span5">
+            <table class="table table-striped table-condensed">
+                  <thead>
+                  <tr>
+                      <th>Id</th>
+                      <th>Feature name </th>
+                      <th>groupId</th>
+                      <th>artifactId</th>                                          
+                  </tr>
+              </thead>
+              <tbody>
+                <tr  *ngFor="let feature of features"  >
+                    <td> {{ feature.id }}</td>
+                    <td> {{feature.name}}</td>
+                    <td>  {{feature.maven.groupId}}</td>
+                    <td> {{feature.maven.artifactId}}</td>                                       
+                </tr>
+              </tbody>
+            </table>
+            </div>
+    </div>
+</div>
