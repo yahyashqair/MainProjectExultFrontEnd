@@ -8,8 +8,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileService {
 
-  urlAllProfile="http://localhost:8080/Profile/all/";
-  urlRelatios="http://localhost:8080/Profile/relations/";
+  urlAllProfile="http://localhost:8080/profile/all/";
+  urlRelatios="http://localhost:8080/profile/relations/";
   GetProfiles(){
     return this.http.get<Profile[]>(this.urlAllProfile);
    }

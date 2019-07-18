@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import vis from 'vis' ;
+import vis from 'vis';
+import { ProfileService, Profile, ProfileRelation } from 'src/app/Service/profile.service';
 
 @Component({
   selector: 'app-tree',
@@ -8,42 +9,80 @@ import vis from 'vis' ;
 })
 export class TreeComponent implements OnInit {
 
-  constructor() { }
-
+  constructor(private profileServise: ProfileService) { }
+  profiles: Profile[];
+  relations: ProfileRelation[];
   ngOnInit() {
-    this.graph();
+    this.profileServise.GetProfiles().subscribe(
+      res => {
+        this.profiles = res;
+        this.profileServise.GetRelations().subscribe(
+          res => {
+            this.relations = res;
+            this.graph(this.profiles, this.relations);
+          }, err => console.log(err)
+        );
+      }, err => console.log(err)
+    );
+
   }
 
-  graph(){
-    var nodes = new vis.DataSet([
-      {id: 1, label: 'Node 1'},
-      {id: 2, label: 'Node 2'},
-      {id: 3, label: 'Node 3'},
-      {id: 4, label: 'Node 4'},
-      {id: 5, label: 'Node 5'}
-  ]);
+  graph(profiles: Profile[], relations: ProfileRelation[]) {
+    var listProfile = new Array()
+    var id, label;
+    for (var i = 0; i < profiles.length; i++) {
+      id = profiles[i].id;
+      label = profiles[i].name;
+      listProfile.push({ id, label });
+    }
+    var nodes = new vis.DataSet(listProfile);
 
-  // create an array with edges
-  var edges = new vis.DataSet([
-      {from: 1, to: 3},
-      {from: 1, to: 2},
-      {from: 2, to: 4},
-      {from: 2, to: 5}
-  ]);
+    var listRelation = new Array()
+    var from, to;
+    for (var i = 0; i < relations.length; i++) {
+      from = relations[i].parent;
+      to = relations[i].child;
+      listRelation.push({ from, to });
+    }
 
-  // create a network
-  var container = document.getElementById('mynetwork');
+    // create an array with edges
+    var edges = new vis.DataSet(listRelation);
 
-  // provide the data in the vis format
-  var data = {
+    // create a network
+    var container = document.getElementById('mynetwork');
+
+    // provide the data in the vis format
+    var data = {
       nodes: nodes,
       edges: edges
-  };
-  var options = {};
+    };
+    var options = {
+      edges: {
+        arrows: {
+          to: { enabled: true, scaleFactor: 1, type: 'arrow' }
+        },"smooth": {
+          "roundness": 0.3
+        }},
+        layout: {
+          randomSeed: undefined,
+          improvedLayout:true,
+          hierarchical: {
+            enabled:true,
+            levelSeparation: 150,
+            nodeSpacing: 100,
+            treeSpacing: 200,
+            blockShifting: true,
+            edgeMinimization: true,
+            parentCentralization: true,
+            direction: 'UD',        // UD, DU, LR, RL
+            sortMethod: 'directed'   // hubsize, directed
+          }
+        }
+      };
 
-  // initialize your network!
-  var network = new vis.Network(container, data, options);
+        // initialize your network!
+        var network = new vis.Network(container, data, options);
 
-  }
-  
-}
+      }
+
+    }
