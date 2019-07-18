@@ -6,10 +6,10 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FeatureService {
-  getAllFeatureUrl="http://localhost:8080/feature/all";
+  getAllFeatureUrl="http://localhost:8080/feature/all/?";
   id=1;
-  GetFeatures(){
-    return this.http.get<Feature[]>(this.getAllFeatureUrl);
+  GetFeatures(pagenumber :number , pagesize : number){
+    return this.http.get<FeaturePage>(this.getAllFeatureUrl+"pagenumber="+pagenumber+"&"+"size="+pagesize);
    }
   constructor(private http: HttpClient) {
    }
@@ -25,4 +25,11 @@ export interface FeatureXde {
   id:number;
   xde:Xde;
   typeOfRelation:String;
+}
+
+export interface FeaturePage {
+  content:Feature[];
+  totalElements:number;
+  totalPages:number;
+  number:number;
 }
