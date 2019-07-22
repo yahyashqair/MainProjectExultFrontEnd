@@ -6,30 +6,34 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class FeatureService {
-  getAllFeatureUrl="http://localhost:8080/feature/all/?";
-  id=1;
-  GetFeatures(pagenumber :number , pagesize : number){
-    return this.http.get<FeaturePage>(this.getAllFeatureUrl+"pagenumber="+pagenumber+"&"+"size="+pagesize);
-   }
+  getAllFeatureUrl = "http://localhost:8080/feature/all/?";
+  featureURL = "http://localhost:8080/feature/";
+  id = 1;
+  GetFeatures(pagenumber: number, pagesize: number) {
+    return this.http.get<FeaturePage>(this.getAllFeatureUrl + "pagenumber=" + pagenumber + "&" + "size=" + pagesize);
+  }
+  getFeature(id: number) {
+    return this.http.get<Feature>(this.featureURL+id);
+  }
   constructor(private http: HttpClient) {
-   }
+  }
 }
 
 export interface Feature {
-  id:number;
-  maven:Maven;
-  name:String;
-  xdeSet:FeatureXde[];
+  id: number;
+  maven: Maven;
+  name: String;
+  xdeSet: FeatureXde[];
 }
 export interface FeatureXde {
-  id:number;
-  xde:Xde;
-  typeOfRelation:String;
+  id: number;
+  xde: Xde;
+  typeOfRelation: String;
 }
 
 export interface FeaturePage {
-  content:Feature[];
-  totalElements:number;
-  totalPages:number;
-  number:number;
+  content: Feature[];
+  totalElements: number;
+  totalPages: number;
+  number: number;
 }

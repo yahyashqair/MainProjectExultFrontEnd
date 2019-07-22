@@ -9,3 +9,6 @@ table {
   }
   
   tr:nth-child(even) {background-color: #b1afd39d;}
+  .rowPointer:hover{
+    cursor:pointer;
+  }

@@ -20,7 +20,7 @@
               <tbody>
                 <tr  *ngFor="let feature of features"  >
                     <td> {{ feature.id }}</td>
-                    <td> {{feature.name}}</td>
+                    <td class="rowPointer" [routerLink]="['/feature/', feature.id]" > {{feature.name}}</td>
                     <td>  {{feature.maven.groupId}}</td>
                     <td> {{feature.maven.artifactId}}</td>     
                     <td> {{feature.xdeSet | json  }}</td>                                       

@@ -12,27 +12,27 @@ export class XdeComponent implements OnInit {
   xde: Xde;
   xdes: Xde[];
   data: any;
-  pagenumber:number ;
-  size:number  ;
-  res:any;
+  pagenumber: number;
+  size: number;
+  res: any;
   update(value: number) { this.pagenumber = value; }
   update2(value: number) { this.size = value; }
 
-  constructor(private get: GetXdesService,private route : ActivatedRoute,
-    private router : Router) {
+  constructor(private get: GetXdesService, private route: ActivatedRoute,
+    private router: Router) {
   }
   ngOnInit() {
     this.sendRequest();
   }
-  sendRequest(){
-    console.log(this.pagenumber,this.size);
-    if(this.pagenumber==undefined){
-      this.pagenumber=1;
-      this.size=10;
+  sendRequest() {
+    console.log(this.pagenumber, this.size);
+    if (this.pagenumber == undefined) {
+      this.pagenumber = 1;
+      this.size = 10;
     }
-    this.get.GetXdes(this.pagenumber,this.size).subscribe(
+    this.get.GetXdes(this.pagenumber, this.size).subscribe(
       res => {
-        this.res=res;
+        this.res = res;
         this.xdes = res.content;
       }, err => console.log(err)
     );

@@ -9,6 +9,9 @@ import { TreeComponent } from './Component/tree/tree.component';
 import { HttpClientModule } from '@angular/common/http';
 import { AppRoutingModule } from './/app-routing.module';
 import { ErrorlinkComponent } from './Component/errorlink/errorlink.component';
+import { XdeinfoComponent } from './Component/Info/xdeinfo/xdeinfo.component';
+import { ProfileinfoComponent } from './Component/Info/profileinfo/profileinfo.component';
+import { FeatureinfoComponent } from './Component/Info/featureinfo/featureinfo.component';
 
 @NgModule({
   declarations: [
@@ -18,7 +21,10 @@ import { ErrorlinkComponent } from './Component/errorlink/errorlink.component';
     FeatureComponent,
     ProfileComponent,
     TreeComponent,
-    ErrorlinkComponent
+    ErrorlinkComponent,
+    XdeinfoComponent,
+    ProfileinfoComponent,
+    FeatureinfoComponent
   ],
   imports: [
     BrowserModule,HttpClientModule, AppRoutingModule
