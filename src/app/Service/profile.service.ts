@@ -28,7 +28,14 @@ export interface Profile {
   maven: Maven;
   name: String;
   features: Feature[];
+  configurations: Configration[];
 }
+export interface Configration {
+  id: number;
+  name: String;
+  value: String;
+}
+
 export interface ProfileRelation {
   parent: number;
   child: number;

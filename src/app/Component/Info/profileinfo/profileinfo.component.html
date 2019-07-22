@@ -39,6 +39,26 @@
       </tbody>
       </table>
     </section>
+    <section>
+        <h4>Profile Configration</h4>
+        <table>
+            <thead>
+                <tr>
+                    <th>Configration Id</th>
+                    <th>Configration Name</th>  
+                    <th>Configration Value</th>                                     
+                </tr>
+            </thead>.
+          <tbody>
+          <tr *ngFor="let configration of profile.configurations">
+              <td>{{configration.id}}</td>
+              <td>{{configration.name}}</td>
+              <td>{{configration.value}}</td>
+          </tr>
+        </tbody>
+        </table>
+      </section>
+  
   </div>
   
   <div *ngIf="!exist">
