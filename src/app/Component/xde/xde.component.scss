@@ -8,4 +8,6 @@ table {
     padding: 8px;
   }
   tr:nth-child(even) {background-color: #c0d3af9d;}
-  
+  .rowPointer:hover{
+    cursor:pointer;
+  }
