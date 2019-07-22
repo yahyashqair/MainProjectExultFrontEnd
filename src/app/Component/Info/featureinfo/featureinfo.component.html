@@ -1,22 +1,46 @@
 <div class="card" *ngIf="exist">
-    <h1>Feature Information Page</h1>
-    <section>
-        <h3>Name:</h3>
-      <label>{{feature.name}}</label>
-    </section>
-    
-    <section>
-        <h3>id:</h3>
-        <label>{{feature.id}}</label>
-      </section>
-      
-    <section>
-        <h3>maven Info:</h3>
-        <label> <h6>groupId</h6> : {{feature.maven.groupId}}</label><Br>
-        <label> <h6>artifactId</h6> : {{feature.maven.artifactId}}</label><br>
-        <label> <h6>version</h6>  : {{feature.maven.version}}</label><Br>
-      </section>
-  </div>
-  <div *ngIf="!exist">
-    <h3>Sorry, Feature Does Not Exist</h3>
-  </div>
+  <h1>Feature Information Page</h1>
+  <section>
+    <h3>Name:</h3>
+    <label>{{feature.name}}</label>
+  </section>
+
+  <section>
+    <h3>id:</h3>
+    <label>{{feature.id}}</label>
+  </section>
+
+  <section>
+    <h3>maven Info:</h3>
+    <label>
+      <h6>groupId</h6> : {{feature.maven.groupId}}
+    </label><Br>
+    <label>
+      <h6>artifactId</h6> : {{feature.maven.artifactId}}
+    </label><br>
+    <label>
+      <h6>version</h6> : {{feature.maven.version}}
+    </label><Br>
+  </section>
+  <section>
+    <h4>Feature Dependencies</h4>
+    <table>
+        <thead>
+            <tr>
+                <th>Xde Name</th>
+                <th>Type Of Relation</th>                                       
+            </tr>
+        </thead>.
+      <tbody>
+      <tr *ngFor="let fx of feature.xdeSet">
+        <td class="rowPointer" [routerLink]="['/xde/', fx.xde.id]"> {{ fx.xde.name }}</td>
+        <td>{{fx.typeOfRelation}}</td>
+      </tr>
+    </tbody>
+    </table>
+  </section>
+</div>
+
+<div *ngIf="!exist">
+  <h3>Sorry, Feature Does Not Exist</h3>
+</div>

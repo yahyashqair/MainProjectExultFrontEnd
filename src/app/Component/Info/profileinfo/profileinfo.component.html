@@ -1,3 +1,46 @@
-<p>
-  profileinfo works!
-</p>
+<div class="card" *ngIf="exist">
+    <h1>Profile Information Page</h1>
+    <section>
+      <h3>Name:</h3>
+      <label>{{profile.name}}</label>
+    </section>
+  
+    <section>
+      <h3>id:</h3>
+      <label>{{profile.id}}</label>
+    </section>
+  
+    <section>
+      <h3>maven Info:</h3>
+      <label>
+        <h6>groupId</h6> : {{profile.maven.groupId}}
+      </label><Br>
+      <label>
+        <h6>artifactId</h6> : {{profile.maven.artifactId}}
+      </label><br>
+      <label>
+        <h6>version</h6> : {{profile.maven.version}}
+      </label><Br>
+    </section>
+    <section>
+      <h4>profile Dependencies</h4>
+      <table>
+          <thead>
+              <tr>
+                  <th>Feature ID</th>
+                  <th>Feature Name</th>                                       
+              </tr>
+          </thead>.
+        <tbody>
+        <tr *ngFor="let feature of profile.features">
+            <td>{{feature.id}}</td>
+          <td class="rowPointer" [routerLink]="['/feature/', feature.id]"> {{ feature.name }}</td>
+        </tr>
+      </tbody>
+      </table>
+    </section>
+  </div>
+  
+  <div *ngIf="!exist">
+    <h3>Sorry, profile Does Not Exist</h3>
+  </div>

@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import vis from 'vis';
 import { ProfileService, Profile, ProfileRelation } from 'src/app/Service/profile.service';
+import { Router } from '@angular/router';
+import { FeatureService } from 'src/app/Service/feature.service';
 
 @Component({
   selector: 'app-tree',
@@ -9,9 +11,11 @@ import { ProfileService, Profile, ProfileRelation } from 'src/app/Service/profil
 })
 export class TreeComponent implements OnInit {
 
-  constructor(private profileServise: ProfileService) { }
+  constructor(private profileServise: ProfileService,private rout: Router) { }
+
   profiles: Profile[];
   relations: ProfileRelation[];
+
   ngOnInit() {
     this.profileServise.GetProfiles().subscribe(
       res => {
@@ -60,29 +64,34 @@ export class TreeComponent implements OnInit {
       edges: {
         arrows: {
           to: { enabled: true, scaleFactor: 1, type: 'arrow' }
-        },"smooth": {
+        }, "smooth": {
           "roundness": 0.3
-        }},
-        layout: {
-          randomSeed: undefined,
-          improvedLayout:true,
-          hierarchical: {
-            enabled:true,
-            levelSeparation: 150,
-            nodeSpacing: 100,
-            treeSpacing: 200,
-            blockShifting: true,
-            edgeMinimization: true,
-            parentCentralization: true,
-            direction: 'UD',        // UD, DU, LR, RL
-            sortMethod: 'directed'   // hubsize, directed
-          }
         }
-      };
-
-        // initialize your network!
-        var network = new vis.Network(container, data, options);
-
+      },
+      layout: {
+        randomSeed: undefined,
+        improvedLayout: true,
+        hierarchical: {
+          enabled: true,
+          levelSeparation: 150,
+          nodeSpacing: 100,
+          treeSpacing: 200,
+          blockShifting: true,
+          edgeMinimization: true,
+          parentCentralization: true,
+          direction: 'UD',        // UD, DU, LR, RL
+          sortMethod: 'directed'   // hubsize, directed
+        }
       }
+    };
 
-    }
+    // initialize your network!
+    var network = new vis.Network(container, data, options);
+    network.on('doubleClick', function (properties) {
+      if (properties.nodes.length > 0) {
+        window.location.href = window.location+"/profile/"+properties.nodes[0];
+      }
+    });
+  }
+
+}

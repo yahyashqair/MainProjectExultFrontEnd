@@ -7,26 +7,29 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProfileService {
-
-  urlAllProfile="http://localhost:8080/profile/all/";
-  urlRelatios="http://localhost:8080/profile/relations/";
-  GetProfiles(){
+  urlProfile = "http://localhost:8080/profile/";
+  urlAllProfile = "http://localhost:8080/profile/all/";
+  urlRelatios = "http://localhost:8080/profile/relations/";
+  GetProfiles() {
     return this.http.get<Profile[]>(this.urlAllProfile);
-   }
-   GetRelations(){
+  }
+  getProfile(id: number) {
+    return this.http.get<Profile>(this.urlProfile + id);
+  }
+  GetRelations() {
     return this.http.get<ProfileRelation[]>(this.urlRelatios);
-   }
+  }
   constructor(private http: HttpClient) {
-   }
+  }
 }
 
 export interface Profile {
-  id:number;
-  maven:Maven;
-  name:String;
-  features:Feature[];
+  id: number;
+  maven: Maven;
+  name: String;
+  features: Feature[];
 }
-export interface ProfileRelation{
-  parent:number;
-  child:number;
+export interface ProfileRelation {
+  parent: number;
+  child: number;
 }
