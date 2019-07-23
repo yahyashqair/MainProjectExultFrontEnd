@@ -12,6 +12,7 @@ import { ErrorlinkComponent } from './Component/errorlink/errorlink.component';
 import { XdeinfoComponent } from './Component/Info/xdeinfo/xdeinfo.component';
 import { ProfileinfoComponent } from './Component/Info/profileinfo/profileinfo.component';
 import { FeatureinfoComponent } from './Component/Info/featureinfo/featureinfo.component';
+import { VisModule } from 'ngx-vis';
 
 @NgModule({
   declarations: [
@@ -27,7 +28,7 @@ import { FeatureinfoComponent } from './Component/Info/featureinfo/featureinfo.c
     FeatureinfoComponent
   ],
   imports: [
-    BrowserModule,HttpClientModule, AppRoutingModule
+    BrowserModule,HttpClientModule, AppRoutingModule,VisModule
   ],
   providers: [],
   bootstrap: [AppComponent]

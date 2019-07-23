@@ -7,9 +7,13 @@ import { HttpClient } from '@angular/common/http';
   providedIn: 'root'
 })
 export class ProfileService {
+
   urlProfile = "http://localhost:8080/profile/";
-  urlAllProfile = "http://localhost:8080/profile/all/";
+  urlParent = "http://localhost:8080/profile/parents/";
+
+  urlAllProfile = "http://localhost:8080/profile/all";
   urlRelatios = "http://localhost:8080/profile/relations/";
+
   GetProfiles() {
     return this.http.get<Profile[]>(this.urlAllProfile);
   }
@@ -19,10 +23,23 @@ export class ProfileService {
   GetRelations() {
     return this.http.get<ProfileRelation[]>(this.urlRelatios);
   }
+  getAllProfileUrl = "http://localhost:8080/profile/all/?";
+  getProfileWithPagination(pagenumber: number, pagesize: number) {
+    return this.http.get<ProfilePage>(this.getAllProfileUrl + "pagenumber=" + pagenumber + "&" + "size=" + pagesize);
+  }
+  getParents(id:number){
+    return this.http.get<Profile[]>(this.urlParent + id);
+  }
   constructor(private http: HttpClient) {
   }
 }
 
+export interface ProfilePage {
+  content: Profile[];
+  totalElements: number;
+  totalPages: number;
+  number: number;
+}
 export interface Profile {
   id: number;
   maven: Maven;

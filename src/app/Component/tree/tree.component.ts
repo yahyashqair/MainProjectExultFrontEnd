@@ -1,22 +1,43 @@
-import { Component, OnInit } from '@angular/core';
-import vis from 'vis';
+import { Component, OnInit, NgZone } from '@angular/core';
 import { ProfileService, Profile, ProfileRelation } from 'src/app/Service/profile.service';
 import { Router } from '@angular/router';
 import { FeatureService } from 'src/app/Service/feature.service';
+import {
+  VisEdges,
+  VisNetworkData,
+  VisNetworkOptions,
+  VisNetworkService,
+  VisNode,
+  VisNodes,
+  VisNetwork
+} from 'ngx-vis';
+class ExampleNetworkData implements VisNetworkData {
+  public nodes: VisNodes;
+  public edges: VisEdges;
+}
 
 @Component({
   selector: 'app-tree',
   templateUrl: './tree.component.html',
   styleUrls: ['./tree.component.scss']
 })
+
 export class TreeComponent implements OnInit {
 
-  constructor(private profileServise: ProfileService,private rout: Router) { }
+  public visNetwork: string = 'networkId1';
+  public visNetworkData: ExampleNetworkData;
+  public visNetworkOptions: VisNetworkOptions;
+
+  constructor(private profileServise: ProfileService, private visNetworkService: VisNetworkService,private _ngZone: NgZone) {
+
+  }
 
   profiles: Profile[];
   relations: ProfileRelation[];
 
   ngOnInit() {
+    console.log("Sfasdf");
+
     this.profileServise.GetProfiles().subscribe(
       res => {
         this.profiles = res;
@@ -32,40 +53,40 @@ export class TreeComponent implements OnInit {
   }
 
   graph(profiles: Profile[], relations: ProfileRelation[]) {
-    var listProfile = new Array()
+    console.log("Sfasdf");
+    var listProfile = new Array();
     var id, label;
     for (var i = 0; i < profiles.length; i++) {
       id = profiles[i].id;
       label = profiles[i].name;
       listProfile.push({ id, label });
     }
-    var nodes = new vis.DataSet(listProfile);
-
-    var listRelation = new Array()
+    var listRelation = new Array();
     var from, to;
     for (var i = 0; i < relations.length; i++) {
       from = relations[i].parent;
       to = relations[i].child;
       listRelation.push({ from, to });
     }
+    const nodes = new VisNodes(listProfile);
+    const edges = new VisEdges(listRelation);
+    this.visNetworkData = {
+      nodes,
+      edges,
+  };
 
-    // create an array with edges
-    var edges = new vis.DataSet(listRelation);
+    this.visNetworkService.fit(this.visNetwork);
+    // var nodes = new vis.DataSet(listProfile);
+    // var edges = new vis.DataSet(listRelation);
 
     // create a network
-    var container = document.getElementById('mynetwork');
+    // var container = document.getElementById('mynetwork');
 
     // provide the data in the vis format
-    var data = {
-      nodes: nodes,
-      edges: edges
-    };
-    var options = {
+    this.visNetworkOptions = {
       edges: {
         arrows: {
           to: { enabled: true, scaleFactor: 1, type: 'arrow' }
-        }, "smooth": {
-          "roundness": 0.3
         }
       },
       layout: {
@@ -84,14 +105,6 @@ export class TreeComponent implements OnInit {
         }
       }
     };
-
-    // initialize your network!
-    var network = new vis.Network(container, data, options);
-    network.on('doubleClick', function (properties) {
-      if (properties.nodes.length > 0) {
-        window.location.href = window.location+"/profile/"+properties.nodes[0];
-      }
-    });
   }
 
 }
