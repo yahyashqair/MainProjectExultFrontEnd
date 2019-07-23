@@ -13,6 +13,17 @@ import { XdeinfoComponent } from './Component/Info/xdeinfo/xdeinfo.component';
 import { ProfileinfoComponent } from './Component/Info/profileinfo/profileinfo.component';
 import { FeatureinfoComponent } from './Component/Info/featureinfo/featureinfo.component';
 import { VisModule } from 'ngx-vis';
+import {AccordionModule} from 'primeng/accordion';     //accordion and accordion tab
+import {MenuItem} from 'primeng/api';
+import { NProfileComponent } from './Component/profile/n-profile/n-profile.component';                 //api
+import {DataViewModule} from 'primeng/dataview';
+import {PanelModule} from 'primeng/components/panel/panel';
+import {DataGridModule} from 'primeng/components/datagrid/datagrid';
+import {DialogModule} from 'primeng/components/dialog/dialog';
+import {TabViewModule} from 'primeng/components/tabview/tabview';
+import {CodeHighlighterModule} from 'primeng/components/codehighlighter/codehighlighter';
+import {CommonModule} from '@angular/common';
+import {BrowserAnimationsModule} from '@angular/platform-browser/animations';
 
 @NgModule({
   declarations: [
@@ -25,10 +36,16 @@ import { VisModule } from 'ngx-vis';
     ErrorlinkComponent,
     XdeinfoComponent,
     ProfileinfoComponent,
-    FeatureinfoComponent
+    FeatureinfoComponent,
+    NProfileComponent,   
+   
   ],
   imports: [
-    BrowserModule,HttpClientModule, AppRoutingModule,VisModule
+    CommonModule,
+    BrowserModule,HttpClientModule, AppRoutingModule,VisModule,DataViewModule, PanelModule,
+    DialogModule,
+    TabViewModule,
+    CodeHighlighterModule,DataGridModule  ,BrowserAnimationsModule,AccordionModule
   ],
   providers: [],
   bootstrap: [AppComponent]
