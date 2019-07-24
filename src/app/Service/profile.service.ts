@@ -13,6 +13,7 @@ export class ProfileService {
 
   urlAllProfile = "http://localhost:8080/profile/all";
   urlRelatios = "http://localhost:8080/profile/relations/";
+  urlSearch = "http://localhost:8080/profile/search/";
 
   GetProfiles() {
     return this.http.get<Profile[]>(this.urlAllProfile);
@@ -27,6 +28,10 @@ export class ProfileService {
   getProfileWithPagination(pagenumber: number, pagesize: number) {
     return this.http.get<ProfilePage>(this.getAllProfileUrl + "pagenumber=" + pagenumber + "&" + "size=" + pagesize);
   }
+  searchFunction(qstring:String){
+    return this.http.get<Profile[]>(this.urlSearch+qstring);
+  }
+
   getParents(id:number){
     return this.http.get<Profile[]>(this.urlParent + id);
   }

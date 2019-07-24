@@ -8,12 +8,18 @@ import { HttpClient } from '@angular/common/http';
 export class FeatureService {
   getAllFeatureUrl = "http://localhost:8080/feature/all/?";
   featureURL = "http://localhost:8080/feature/";
+  searchURL = "http://localhost:8080/feature/search/";
+
   id = 1;
   GetFeatures(pagenumber: number, pagesize: number) {
     return this.http.get<FeaturePage>(this.getAllFeatureUrl + "pagenumber=" + pagenumber + "&" + "size=" + pagesize);
   }
   getFeature(id: number) {
     return this.http.get<Feature>(this.featureURL+id);
+  }
+  
+  searchFunction(qstring:String){
+    return this.http.get<Feature[]>(this.searchURL+qstring);
   }
   constructor(private http: HttpClient) {
   }

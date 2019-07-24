@@ -1,34 +1,48 @@
 <div class="container">
-        <div class="row"> 
-             <div class="span5">
-Page Number :  <input type="number" #num  placeholder="Page Number"   (keyup.enter)="update(num.value)"
-(blur)="update(num.value)" >
-Page Size :  <input type="number" #size  placeholder="Page Size" (keyup.enter)="update2(size.value)"
-(blur)="update2(size.value)">
-<input type="button" value="Get" (click)="sendRequest()">
-                <table class="table table-striped table-condensed">
-                      <thead>
-                      <tr>
-                          <th>Id</th>
-                          <th>Xde name </th>
-                          <th>groupId</th>
-                          <th>artifactId</th>                                          
-                      </tr>
-                  </thead>   
-                  <tbody>
-                    <tr  *ngFor="let xde of xdes"  >
-                        <td > {{ xde.id }}</td>
-                        <td class="rowPointer" [routerLink]="['/xde/', xde.id]" > {{xde.name}}</td>
-                        <td >  {{xde.maven.groupId}}</td>
-                        <td > {{xde.maven.artifactId}}</td>                                       
+    <div class="row">
+        <div class="span5">
+            <div class="card-body row no-gutters align-items-center">
+
+                <div class="col">
+                    <input class="form-control form-control-lg form-control-borderless" type="search" #search2
+                        (keyup)="applySearch(search2.value)" placeholder="Search topics or keywords">
+                </div>
+                <!--end of col-->
+                <div class="col-auto">
+                    <button class="btn btn-lg btn-success" >Search</button>
+                </div>
+                <!--end of col-->
+            </div>
+            <!--end of col--><br>
+
+            Page Number : <input type="number" #num placeholder="Page Number" (keyup.enter)="update(num.value)"
+                (blur)="update(num.value)">
+            Page Size : <input type="number" #size placeholder="Page Size" (keyup.enter)="update2(size.value)"
+                (blur)="update2(size.value)">
+            <input type="button" value="Get" (click)="sendRequest()">
+            <table class="table table-striped table-condensed">
+                <thead>
+                    <tr>
+                        <th>Id</th>
+                        <th>Xde name </th>
+                        <th>groupId</th>
+                        <th>artifactId</th>
                     </tr>
-                  </tbody>
-                </table>
-                <Br>
-                    <h6>
+                </thead>
+                <tbody>
+                    <tr *ngFor="let xde of xdes">
+                        <td> {{ xde.id }}</td>
+                        <td class="rowPointer" [routerLink]="['/xde/', xde.id]"> {{xde.name}}</td>
+                        <td> {{xde.maven.groupId}}</td>
+                        <td> {{xde.maven.artifactId}}</td>
+                    </tr>
+                </tbody>
+            </table>
+            <Br>
+            <h6>
                 <span>Number Of Records : {{res.totalElements}} -- </span>
                 <span>Number Of pages : {{res.totalPages}}</span>
             </h6>
-                </div>
         </div>
     </div>
+</div>

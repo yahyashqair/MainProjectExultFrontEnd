@@ -37,6 +37,15 @@ export class XdeComponent implements OnInit {
       }, err => console.log(err)
     );
   }
+  applySearch(value:String){
+    console.log("Enter");
+    this.get.searchFunction(value).subscribe(
+      res => {
+        this.xdes = res;
+        console.log(res);
+      }, err => console.log(err)
+    );
+  }
 
 
 }

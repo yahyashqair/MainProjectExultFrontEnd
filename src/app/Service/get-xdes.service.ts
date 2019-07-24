@@ -6,6 +6,8 @@ import { HttpClient } from '@angular/common/http';
 })
 export class GetXdesService {
   getAllXdeUrl = "http://localhost:8080/xde/all/?";
+  getSearch = "http://localhost:8080/xde/search/";
+
   id = 1;
   xdeUrl = "http://localhost:8080/xde/";
   GetXdes(pagenumber: number, pagesize: number) {
@@ -15,7 +17,9 @@ export class GetXdesService {
   getXde(id: number) {
     return this.http.get<Xde>(this.xdeUrl + id);
   }
-
+  searchFunction(qstring:String){
+    return this.http.get<Xde[]>(this.getSearch+qstring);
+  }
 
 
   constructor(private http: HttpClient) {

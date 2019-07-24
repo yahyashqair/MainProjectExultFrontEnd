@@ -34,5 +34,15 @@ export class FeatureComponent implements OnInit {
       }, err => console.log(err)
     );
   }
+  applySearch(value:String){
+    console.log("Enter");
+    this.get.searchFunction(value).subscribe(
+      res => {
+        this.features = res;
+        console.log(res);
+      }, err => console.log(err)
+    );
+  }
+
 
 }

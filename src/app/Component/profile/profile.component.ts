@@ -36,6 +36,14 @@ export class ProfileComponent implements OnInit {
       }, err => console.log(err)
     );
   }
-
+  applySearch(value:String){
+    console.log("Enter");
+    this.get.searchFunction(value).subscribe(
+      res => {
+        this.profiles = res;
+        console.log(res);
+      }, err => console.log(err)
+    );
+  }
 
 }

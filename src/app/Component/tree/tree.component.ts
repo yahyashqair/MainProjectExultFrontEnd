@@ -11,6 +11,7 @@ import {
   VisNodes,
   VisNetwork
 } from 'ngx-vis';
+import { element } from 'protractor';
 class ExampleNetworkData implements VisNetworkData {
   public nodes: VisNodes;
   public edges: VisEdges;
@@ -28,7 +29,7 @@ export class TreeComponent implements OnInit {
   public visNetworkData: ExampleNetworkData;
   public visNetworkOptions: VisNetworkOptions;
 
-  constructor(private profileServise: ProfileService, private rout: Router, private visNetworkService: VisNetworkService,private _ngZone: NgZone) {
+  constructor(private profileServise: ProfileService, private rout: Router, private visNetworkService: VisNetworkService, private _ngZone: NgZone) {
 
   }
 
@@ -55,18 +56,40 @@ export class TreeComponent implements OnInit {
   graph(profiles: Profile[], relations: ProfileRelation[]) {
     this.visNetworkService.on(this.visNetwork, 'doubleClick');
     this.visNetworkService.doubleClick
-    .subscribe((eventData: any[]) => {
-      //console.log(eventData);
-      if(eventData[1].nodes.length>0){
-        let id = eventData[1].nodes[0] ;
-        this.rout.navigateByUrl('profile/'+id);
-      }
-    });
+      .subscribe((eventData: any[]) => {
+        //console.log(eventData);
+        if (eventData[1].nodes.length > 0) {
+          let id = eventData[1].nodes[0];
+          this.rout.navigateByUrl('profile/' + id);
+        }
+      });
+
+    this.visNetworkService.on(this.visNetwork, 'click');
+    this.visNetworkService.click
+      .subscribe((eventData: any[]) => {
+        console.log(eventData);
+        if (eventData[1].nodes.length > 0) {
+          let id = eventData[1].nodes[0];
+          this.profileServise.getProfile(id).subscribe(data => {
+            
+            document.getElementById("clickmsg").innerHTML= data.name.toString();
+            console.log(eventData[1].pointer.DOM.x + " , "+eventData[1].pointer.DOM.y );
+            (document.querySelector('#clickmsg') as HTMLElement).style.top=eventData[1].pointer.DOM.y+"px";
+            (document.querySelector('#clickmsg') as HTMLElement).style.left=eventData[1].pointer.DOM.x+"px";
+
+            // document.getElementById("clickmsg").style.top=eventData[1].pointer.DOM.x;
+            // document.getElementById("clickmsg").style.left=eventData[1].pointer.DOM.x;
+          })
+        }else{
+          document.getElementById("clickmsg").innerHTML= null;
+        }
+      });
+
     var listProfile = new Array();
     var id, label;
     for (var i = 0; i < profiles.length; i++) {
       id = profiles[i].id;
-      label = profiles[i].name;
+      label = profiles[i].maven.artifactId;
       listProfile.push({ id, label });
     }
     var listRelation = new Array();
@@ -81,7 +104,7 @@ export class TreeComponent implements OnInit {
     this.visNetworkData = {
       nodes,
       edges,
-  };
+    };
 
     this.visNetworkService.fit(this.visNetwork);
     // var nodes = new vis.DataSet(listProfile);
