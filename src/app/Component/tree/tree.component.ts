@@ -28,7 +28,7 @@ export class TreeComponent implements OnInit {
   public visNetworkData: ExampleNetworkData;
   public visNetworkOptions: VisNetworkOptions;
 
-  constructor(private profileServise: ProfileService, private visNetworkService: VisNetworkService,private _ngZone: NgZone) {
+  constructor(private profileServise: ProfileService, private rout: Router, private visNetworkService: VisNetworkService,private _ngZone: NgZone) {
 
   }
 
@@ -53,7 +53,15 @@ export class TreeComponent implements OnInit {
   }
 
   graph(profiles: Profile[], relations: ProfileRelation[]) {
-    console.log("Sfasdf");
+    this.visNetworkService.on(this.visNetwork, 'doubleClick');
+    this.visNetworkService.doubleClick
+    .subscribe((eventData: any[]) => {
+      //console.log(eventData);
+      if(eventData[1].nodes.length>0){
+        let id = eventData[1].nodes[0] ;
+        this.rout.navigateByUrl('profile/'+id);
+      }
+    });
     var listProfile = new Array();
     var id, label;
     for (var i = 0; i < profiles.length; i++) {
