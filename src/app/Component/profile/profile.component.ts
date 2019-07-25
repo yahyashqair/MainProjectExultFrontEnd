@@ -1,6 +1,7 @@
 import { Component, OnInit } from '@angular/core';
 import { Profile, ProfileService } from 'src/app/Service/profile.service';
 import { ActivatedRoute, Router } from '@angular/router';
+import { debounceTime } from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',

@@ -1,0 +1,50 @@
+<p-dataView #dv [value]="xdes" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [paginator]="true" [rows]="4" paginatorPosition="both" filterBy="brand"
+[sortField]="sortField" [sortOrder]="sortOrder">
+<ng-template let-xde pTemplate="listItem">
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+        <div class="ui-g-12 ui-md-8 xde-details">
+            <div class="ui-g">
+                <div class="ui-g-2 ui-sm-6">Xde Id : </div>
+                <div class="ui-g-10 ui-sm-6"><b>{{xde.id}}</b></div>
+
+                <div class="ui-g-2 ui-sm-6">Xde Name: </div>
+                <div class="ui-g-10 ui-sm-6"><b>{{xde.name}}</b></div>
+
+                <div class="ui-g-2 ui-sm-6">Xde groupId: </div>
+                <div class="ui-g-10 ui-sm-6"><b>{{xde.maven.groupId}}</b></div>
+
+                <div class="ui-g-2 ui-sm-6">Xde artifactId : </div>
+                <div class="ui-g-10 ui-sm-6"><b>{{xde.maven.artifactId}}</b></div>
+            </div>
+        </div>
+        <div class="ui-g-12 ui-md-1 search-icon">
+            <button pButton type="button" icon="pi pi-search" (click)="selectxde($event, xde)">pop up</button>
+        </div>
+        <div class="ui-g-12 ui-md-1 search-icon">
+            <button pButton type="button" icon="pi pi-search" (click)="routexde(xde)">More Information</button>
+        </div>
+    </div>
+</ng-template>
+<ng-template let-xde pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+        <p-panel [header]="xde.vin" [style]="{'text-align':'center'}">
+            <div class="xde-detail">{{xde.id}} - {{xde.name}}</div>
+            <hr class="ui-widget-content" style="border-top:0">
+            <button pButton type="button" icon="pi pi-search" (click)="selectXde($event, xde)" style="margin-top:0"></button>
+        </p-panel>
+    </div>
+</ng-template>
+</p-dataView>
+
+<p-dialog header="Xde Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="500" (onAfterHide)="onDialogHide()">
+<div class="ui-g" *ngIf="selectedXde">
+    <div class="ui-g-4">id: </div>
+    <div class="ui-g-8">{{selectedXde.id}}</div>
+    <div class="ui-g-4">name: </div>
+    <div class="ui-g-8">{{selectedXde.name}}</div>
+    <div class="ui-g-4">groupId: </div>
+    <div class="ui-g-8">{{selectedXde.maven.groupId}}</div>
+    <div class="ui-g-4">artifactId: </div>
+    <div class="ui-g-8">{{selectedXde.maven.artifactId}}</div>
+</div>
+</p-dialog>

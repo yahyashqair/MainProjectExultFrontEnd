@@ -12,16 +12,17 @@ import { ProfileinfoComponent } from './Component/Info/profileinfo/profileinfo.c
 import { ProfileComponent } from './Component/profile/profile.component';
 import { NProfileComponent } from './Component/profile/n-profile/n-profile.component';
 import { NfeatureComponent } from './Component/feature/nfeature/nfeature.component';
+import { NxdeComponent } from './Component/xde/nxde/nxde.component';
 const routes: Routes = [
-  { path: 'xde', component: XdeComponent },
+  { path: 'xde', component: NxdeComponent },
   { path: 'xde/:id', component: XdeinfoComponent },
-  { path: 'feature', component: FeatureComponent },
-  { path: 'nprofile', component:NProfileComponent },
-  { path: 'nfeature', component:NfeatureComponent },
-
+  { path: 'feature', component: NfeatureComponent },
+  { path: 'nprofile', component: ProfileComponent },
+  { path: 'nfeature', component: FeatureComponent },
+  { path: 'nxde', component: XdeComponent },
   { path: 'feature/:id', component: FeatureinfoComponent },
   { path: 'profile/:id', component: ProfileinfoComponent },
-  { path: 'profile', component: ProfileComponent },
+  { path: 'profile', component: NProfileComponent },
   { path: '', component: TreeComponent },
   { path: '**', component: ErrorlinkComponent }];
 

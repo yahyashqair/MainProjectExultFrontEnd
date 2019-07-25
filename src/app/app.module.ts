@@ -27,6 +27,7 @@ import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { TooltipModule } from 'primeng/tooltip';
 import {TableModule} from 'primeng/table';
 import { NfeatureComponent } from './Component/feature/nfeature/nfeature.component';
+import { NxdeComponent } from './Component/xde/nxde/nxde.component';
 
 @NgModule({
   declarations: [
@@ -41,7 +42,8 @@ import { NfeatureComponent } from './Component/feature/nfeature/nfeature.compone
     ProfileinfoComponent,
     FeatureinfoComponent,
     NProfileComponent,
-    NfeatureComponent
+    NfeatureComponent,
+    NxdeComponent
 
   ],
   imports: [
