@@ -8,12 +8,12 @@ import { HttpClient } from '@angular/common/http';
 })
 export class ProfileService {
 
-  urlProfile = "http://localhost:8080/profile/";
-  urlParent = "http://localhost:8080/profile/parents/";
+  urlProfile = 'http://localhost:8080/profile/';
+  urlParent = 'http://localhost:8080/profile/parents/';
 
-  urlAllProfile = "http://localhost:8080/profile/all";
-  urlRelatios = "http://localhost:8080/profile/relations/";
-  urlSearch = "http://localhost:8080/profile/search/";
+  urlAllProfile = 'http://localhost:8080/profile/all';
+  urlRelatios = 'http://localhost:8080/profile/relations/';
+  urlSearch = 'http://localhost:8080/profile/search/';
 
   GetProfiles() {
     return this.http.get<Profile[]>(this.urlAllProfile);
@@ -24,15 +24,15 @@ export class ProfileService {
   GetRelations() {
     return this.http.get<ProfileRelation[]>(this.urlRelatios);
   }
-  getAllProfileUrl = "http://localhost:8080/profile/all/?";
+  getAllProfileUrl = 'http://localhost:8080/profile/all/?';
   getProfileWithPagination(pagenumber: number, pagesize: number) {
-    return this.http.get<ProfilePage>(this.getAllProfileUrl + "pagenumber=" + pagenumber + "&" + "size=" + pagesize);
+    return this.http.get<ProfilePage>(this.getAllProfileUrl + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
   }
-  searchFunction(qstring:String){
-    return this.http.get<Profile[]>(this.urlSearch+qstring);
+  searchFunction(qstring: String) {
+    return this.http.get<Profile[]>(this.urlSearch + qstring);
   }
 
-  getParents(id:number){
+  getParents(id: number) {
     return this.http.get<Profile[]>(this.urlParent + id);
   }
   constructor(private http: HttpClient) {

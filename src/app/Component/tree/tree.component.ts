@@ -71,8 +71,8 @@ export class TreeComponent implements OnInit {
         if (eventData[1].nodes.length > 0) {
           let id = eventData[1].nodes[0];
           this.profileServise.getProfile(id).subscribe(data => {
-            
-            document.getElementById("clickmsg").innerHTML= data.name.toString();
+
+            document.getElementById('clickmsg').innerHTML = data.name.toString();
             console.log(eventData[1].pointer.DOM.x + " , "+eventData[1].pointer.DOM.y );
             (document.querySelector('#clickmsg') as HTMLElement).style.top=eventData[1].pointer.DOM.y+"px";
             (document.querySelector('#clickmsg') as HTMLElement).style.left=eventData[1].pointer.DOM.x+"px";
@@ -115,6 +115,7 @@ export class TreeComponent implements OnInit {
 
     // provide the data in the vis format
     this.visNetworkOptions = {
+
       edges: {
         arrows: {
           to: { enabled: true, scaleFactor: 1, type: 'arrow' }
@@ -125,11 +126,11 @@ export class TreeComponent implements OnInit {
         improvedLayout: true,
         hierarchical: {
           enabled: true,
-          levelSeparation: 150,
-          nodeSpacing: 100,
-          treeSpacing: 200,
-          blockShifting: true,
-          edgeMinimization: true,
+          levelSeparation: 340,
+          nodeSpacing: 50,
+          treeSpacing: 10,
+          blockShifting: false,
+          edgeMinimization: false,
           parentCentralization: true,
           direction: 'UD',        // UD, DU, LR, RL
           sortMethod: 'directed'   // hubsize, directed
