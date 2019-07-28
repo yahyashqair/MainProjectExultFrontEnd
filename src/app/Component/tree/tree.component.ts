@@ -115,7 +115,11 @@ export class TreeComponent implements OnInit {
 
     // provide the data in the vis format
     this.visNetworkOptions = {
-
+      nodes: {
+        scaling: {max : 100 , min : 30 },
+        size: 40,
+        shape:"dot";
+      },
       edges: {
         arrows: {
           to: { enabled: true, scaleFactor: 1, type: 'arrow' }
@@ -126,10 +130,10 @@ export class TreeComponent implements OnInit {
         improvedLayout: true,
         hierarchical: {
           enabled: true,
-          levelSeparation: 340,
-          nodeSpacing: 50,
+          levelSeparation: 200,
+          nodeSpacing: 200,
           treeSpacing: 10,
-          blockShifting: false,
+          blockShifting: true,
           edgeMinimization: false,
           parentCentralization: true,
           direction: 'UD',        // UD, DU, LR, RL
