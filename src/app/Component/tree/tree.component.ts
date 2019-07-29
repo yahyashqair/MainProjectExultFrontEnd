@@ -115,10 +115,13 @@ export class TreeComponent implements OnInit {
 
     // provide the data in the vis format
     this.visNetworkOptions = {
+      configure: {
+        enabled: true,
+        showButton: true
+      },
       nodes: {
-        scaling: {max : 100 , min : 30 },
-        size: 40,
-        shape:"dot";
+        //scaling: {max : 100 , min : 30 },
+        size: 100,
       },
       edges: {
         arrows: {
@@ -131,14 +134,25 @@ export class TreeComponent implements OnInit {
         hierarchical: {
           enabled: true,
           levelSeparation: 200,
-          nodeSpacing: 200,
-          treeSpacing: 10,
+          nodeSpacing: 22,
+          treeSpacing: 200,
           blockShifting: true,
           edgeMinimization: false,
           parentCentralization: true,
           direction: 'UD',        // UD, DU, LR, RL
-          sortMethod: 'directed'   // hubsize, directed
-        }
+          sortMethod: 'directed' ,  // hubsize, directed
+        },
+
+      },
+      physics:{
+        hierarchicalRepulsion: {
+          centralGravity: 4.55,
+          springLength: 50,
+          springConstant: 0.99,
+          nodeDistance: 410,
+          damping: 0.09
+        },
+        solver: 'hierarchicalRepulsion'
       }
     };
   }
