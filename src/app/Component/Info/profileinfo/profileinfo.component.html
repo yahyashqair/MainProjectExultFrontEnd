@@ -4,12 +4,12 @@
       <h3>Name:</h3>
       <label>{{profile.name}}</label>
     </section>
-  
+
     <section>
       <h3>id:</h3>
       <label>{{profile.id}}</label>
     </section>
-  
+
     <section>
       <h3>maven Info:</h3>
       <label>
@@ -28,7 +28,7 @@
           <thead>
               <tr>
                   <th>Feature ID</th>
-                  <th>Feature Name</th>                                       
+                  <th>Feature Name</th>
               </tr>
           </thead>.
         <tbody>
@@ -44,16 +44,22 @@
         <table>
             <thead>
                 <tr>
-                    <th>Configration Id</th>
-                    <th>Configration Name</th>  
-                    <th>Configration Value</th>                                     
+                  <th>criteria Id</th>
+                  <th>criteria Name</th>
+                  <th>criteria operation</th>
+                  <th>criteria operator</th>
+                  <td>Configurations Set</td>
+
                 </tr>
             </thead>.
           <tbody>
-          <tr *ngFor="let configration of profile.configurations">
-              <td>{{configration.id}}</td>
-              <td>{{configration.name}}</td>
-              <td>{{configration.value}}</td>
+          <tr *ngFor="let criteria of profile.criteriaSet">
+              <td>{{criteria.id}}</td>
+              <td>{{criteria.name}}</td>
+              <td>{{criteria.operation}}</td>
+              <td>{{criteria.operator}}</td>
+            <td>{{criteria.configurationSet | json }}</td>
+
           </tr>
         </tbody>
         </table>
@@ -64,9 +70,9 @@
       [visNetworkOptions]="visNetworkOptions"
       (initialized)="graph()"></div>
 
-  
+
   </div>
-  
+
   <div *ngIf="!exist">
     <h3>Sorry, profile Does Not Exist</h3>
   </div>

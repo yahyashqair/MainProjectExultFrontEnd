@@ -1,7 +1,7 @@
-import { Component, OnInit } from '@angular/core';
-import { Profile, ProfileService } from 'src/app/Service/profile.service';
-import { ActivatedRoute, Router } from '@angular/router';
-import { debounceTime } from 'rxjs/operators';
+import {Component, OnInit} from '@angular/core';
+import {Profile, ProfileService} from 'src/app/Service/profile.service';
+import {ActivatedRoute, Router} from '@angular/router';
+import {debounceTime} from 'rxjs/operators';
 
 @Component({
   selector: 'app-profile',
@@ -15,18 +15,26 @@ export class ProfileComponent implements OnInit {
   pagenumber: number;
   size: number;
   res: any;
-  update(value: number) { this.pagenumber = value; }
-  update2(value: number) { this.size = value; }
+
+  update(value: number) {
+    this.pagenumber = value;
+  }
+
+  update2(value: number) {
+    this.size = value;
+  }
 
   constructor(private get: ProfileService, private route: ActivatedRoute,
-    private router: Router) {
+              private router: Router) {
   }
+
   ngOnInit() {
     this.sendRequest();
   }
+
   sendRequest() {
     console.log(this.pagenumber, this.size);
-    if (this.pagenumber == undefined) {
+    if (this.pagenumber === undefined) {
       this.pagenumber = 1;
       this.size = 10;
     }
@@ -37,8 +45,9 @@ export class ProfileComponent implements OnInit {
       }, err => console.log(err)
     );
   }
-  applySearch(value:String){
-    console.log("Enter");
+
+  applySearch(value: String) {
+    console.log('Enter');
     this.get.searchFunction(value).subscribe(
       res => {
         this.profiles = res;
