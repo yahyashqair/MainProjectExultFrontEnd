@@ -14,6 +14,7 @@ import { NProfileComponent } from './Component/profile/n-profile/n-profile.compo
 import { NfeatureComponent } from './Component/feature/nfeature/nfeature.component';
 import { NxdeComponent } from './Component/xde/nxde/nxde.component';
 import {LoaderComponent} from './Component/device/loader/loader.component';
+import {MatchingComponent} from './Component/profile/matching/matching.component';
 const routes: Routes = [
   { path: 'xde', component: NxdeComponent },
   { path: 'xde/:id', component: XdeinfoComponent },
@@ -25,6 +26,7 @@ const routes: Routes = [
   { path: 'profile/:id', component: ProfileinfoComponent },
   { path: 'profile', component: NProfileComponent },
   { path: 'upload', component: LoaderComponent },
+  { path: 'matching', component: MatchingComponent },
   { path: '', component: TreeComponent },
   { path: '**', component: ErrorlinkComponent }];
 

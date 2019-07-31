@@ -28,8 +28,13 @@ import { TooltipModule } from 'primeng/tooltip';
 import {TableModule} from 'primeng/table';
 import { NfeatureComponent } from './Component/feature/nfeature/nfeature.component';
 import { NxdeComponent } from './Component/xde/nxde/nxde.component';
+<<<<<<< HEAD
 import { LoaderComponent } from './Component/device/loader/loader.component';
 import { FileSelectDirective } from 'ng2-file-upload';
+=======
+import { MatchingComponent } from './Component/profile/matching/matching.component';
+import { ReactiveFormsModule } from '@angular/forms';
+>>>>>>> b0caa0cbccefcbe42c06041a0ac09fa1d4649eaf
 
 @NgModule({
   declarations: [
@@ -46,14 +51,19 @@ import { FileSelectDirective } from 'ng2-file-upload';
     NProfileComponent,
     NfeatureComponent,
     NxdeComponent,
+<<<<<<< HEAD
     LoaderComponent,FileSelectDirective
+=======
+    MatchingComponent
+
+>>>>>>> b0caa0cbccefcbe42c06041a0ac09fa1d4649eaf
   ],
   imports: [
     CommonModule,
     BrowserModule, HttpClientModule, AppRoutingModule, VisModule, DataViewModule, PanelModule,
     DialogModule,
     TabViewModule,
-    CodeHighlighterModule , DataGridModule, BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule
+    CodeHighlighterModule, DataGridModule, BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
