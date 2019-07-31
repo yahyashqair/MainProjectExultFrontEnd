@@ -28,6 +28,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import {TableModule} from 'primeng/table';
 import { NfeatureComponent } from './Component/feature/nfeature/nfeature.component';
 import { NxdeComponent } from './Component/xde/nxde/nxde.component';
+import { MatchingComponent } from './Component/profile/matching/matching.component';
+import { ReactiveFormsModule } from '@angular/forms';
 
 @NgModule({
   declarations: [
@@ -43,7 +45,8 @@ import { NxdeComponent } from './Component/xde/nxde/nxde.component';
     FeatureinfoComponent,
     NProfileComponent,
     NfeatureComponent,
-    NxdeComponent
+    NxdeComponent,
+    MatchingComponent
 
   ],
   imports: [
@@ -51,7 +54,7 @@ import { NxdeComponent } from './Component/xde/nxde/nxde.component';
     BrowserModule, HttpClientModule, AppRoutingModule, VisModule, DataViewModule, PanelModule,
     DialogModule,
     TabViewModule,
-    CodeHighlighterModule, DataGridModule, BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule
+    CodeHighlighterModule, DataGridModule, BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule,ReactiveFormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]
