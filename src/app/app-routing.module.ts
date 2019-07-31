@@ -13,6 +13,7 @@ import { ProfileComponent } from './Component/profile/profile.component';
 import { NProfileComponent } from './Component/profile/n-profile/n-profile.component';
 import { NfeatureComponent } from './Component/feature/nfeature/nfeature.component';
 import { NxdeComponent } from './Component/xde/nxde/nxde.component';
+import {LoaderComponent} from './Component/device/loader/loader.component';
 const routes: Routes = [
   { path: 'xde', component: NxdeComponent },
   { path: 'xde/:id', component: XdeinfoComponent },
@@ -23,6 +24,7 @@ const routes: Routes = [
   { path: 'feature/:id', component: FeatureinfoComponent },
   { path: 'profile/:id', component: ProfileinfoComponent },
   { path: 'profile', component: NProfileComponent },
+  { path: 'upload', component: LoaderComponent },
   { path: '', component: TreeComponent },
   { path: '**', component: ErrorlinkComponent }];
 

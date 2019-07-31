@@ -28,6 +28,8 @@ import { TooltipModule } from 'primeng/tooltip';
 import {TableModule} from 'primeng/table';
 import { NfeatureComponent } from './Component/feature/nfeature/nfeature.component';
 import { NxdeComponent } from './Component/xde/nxde/nxde.component';
+import { LoaderComponent } from './Component/device/loader/loader.component';
+import { FileSelectDirective } from 'ng2-file-upload';
 
 @NgModule({
   declarations: [
@@ -43,15 +45,15 @@ import { NxdeComponent } from './Component/xde/nxde/nxde.component';
     FeatureinfoComponent,
     NProfileComponent,
     NfeatureComponent,
-    NxdeComponent
-
+    NxdeComponent,
+    LoaderComponent,FileSelectDirective
   ],
   imports: [
     CommonModule,
     BrowserModule, HttpClientModule, AppRoutingModule, VisModule, DataViewModule, PanelModule,
     DialogModule,
     TabViewModule,
-    CodeHighlighterModule, DataGridModule, BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule
+    CodeHighlighterModule , DataGridModule, BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule
   ],
   providers: [],
   bootstrap: [AppComponent]
