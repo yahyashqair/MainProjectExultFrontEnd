@@ -13,6 +13,8 @@ export class MatchingComponent implements OnInit {
     CLI_LOGIN_PASSWORD : new FormControl(''),
     CLI_PORT : new FormControl(''),
     CLI_TRANSPORT : new FormControl(''),
+    cli_enable_password : new FormControl(''),
+    SNMP_READ_CS  : new FormControl(''),
     SNMP_PORT : new FormControl('')
   });
 
