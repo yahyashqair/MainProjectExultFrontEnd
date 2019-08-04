@@ -14,6 +14,7 @@ export class ProfileService {
   urlAllProfile = 'http://localhost:8080/profile/all';
   urlRelatios = 'http://localhost:8080/profile/relations/';
   urlSearch = 'http://localhost:8080/profile/search/';
+  urlMatching = 'http://localhost:8080/profile/match/';
 
   GetProfiles() {
     return this.http.get<Profile[]>(this.urlAllProfile);
@@ -25,6 +26,10 @@ export class ProfileService {
 
   GetRelations() {
     return this.http.get<ProfileRelation[]>(this.urlRelatios);
+  }
+
+  getmatching(data: any) {
+    return this.http.post<Profile[]>(this.urlMatching, data);
   }
 
   getAllProfileUrl = 'http://localhost:8080/profile/all/?';
@@ -64,7 +69,7 @@ export interface Configration {
   operation: String;
   value: String;
   isReg: boolean;
-  }
+}
 
 export interface Criteria {
   id: number;

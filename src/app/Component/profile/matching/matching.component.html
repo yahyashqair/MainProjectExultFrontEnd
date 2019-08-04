@@ -1,37 +1,28 @@
 <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()" class="form">
-
   <div class="form-group">
     <label >    CLI_ADDRESS:</label>
     <input formControlName="CLI_ADDRESS" type="email" class="form-control"  placeholder="Enter CLI_ADDRESS">
   </div>
-
   <div class="form-group">
     <label >    CLI_LOGIN_USERNAME:</label>
     <input formControlName="CLI_ADDRESS" formControlName="CLI_LOGIN_USERNAME" type="email" class="form-control"  placeholder="Enter CLI_LOGIN_USERNAME">
   </div>
-
-
   <div class="form-group">
     <label >    CLI_LOGIN_PASSWORD:</label>
     <input formControlName="CLI_ADDRESS" formControlName="CLI_LOGIN_PASSWORD" type="email" class="form-control"  placeholder="Enter CLI_LOGIN_PASSWORD">
   </div>
-
   <div class="form-group">
     <label >    CLI_PORT:</label>
     <input formControlName="CLI_ADDRESS" formControlName="CLI_PORT" type="text" class="form-control"  placeholder="Enter CLI_PORT">
   </div>
-
   <div class="form-group">
     <label >    CLI_TRANSPORT:</label>
     <input formControlName="CLI_ADDRESS" formControlName="CLI_TRANSPORT" type="text" class="form-control"  placeholder="Enter CLI_TRANSPORT">
   </div>
-
   <div class="form-group">
     <label >    SNMP_PORT:</label>
     <input formControlName="CLI_ADDRESS" formControlName="SNMP_PORT" type="text" class="form-control"  placeholder="Enter SNMP_PORT">
   </div>
-
-
   <div class="form-group">
     <label >    SNMP_READ_CS :</label>
     <input formControlName="CLI_ADDRESS" formControlName="SNMP_READ_CS" type="text" class="form-control"  placeholder="Enter SNMP_READ_CS ">
@@ -42,3 +33,17 @@
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
+
+<!--Profile matching table ;-->
+<p-dataView [value]="profiles">
+  <ng-template let-profile pTemplate="listItem">
+    <div>
+      {{profile.id}}
+    </div>
+  </ng-template>
+  <ng-template let-car pTemplate="gridItem">
+    <div class="ui-g-12 ui-md-3">
+      {{profile.name}}
+    </div>
+  </ng-template>
+</p-dataView>
