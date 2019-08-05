@@ -1,0 +1,40 @@
+<div class="main">
+  Device Home !
+  <br>
+  <button type="button" class="btn btn-outline-primary btn-lg">Insert</button>
+<button type="button" class="btn btn-outline-success btn-lg">Update</button>
+</div>
+
+
+<p-dataView #dv [value]="devices">
+  <ng-template let-device pTemplate="listItem">
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+      <div class="ui-g-12 ui-md-8 device-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">device Id : </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{device.id}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">device Name: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{device.cli_ADDRESS}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">device groupId: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{device.cli_LOGIN_USERNAME}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">device artifactId : </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{device.cli_LOGIN_PASSWORD}}</b></div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-1 search-icon">
+        <button pButton type="button" icon="pi pi-search" (click)="routedevice(device)">More Information</button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template let-device pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+      <p-panel [header]="device.vin" [style]="{'text-align':'center'}">
+        <div class="device-detail">{{device.id}} - {{device.cli_ADDRESS}}</div>
+        <hr class="ui-widget-content" style="border-top:0">
+      </p-panel>
+    </div>
+  </ng-template>
+</p-dataView>

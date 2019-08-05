@@ -1,0 +1,32 @@
+<div class="card" *ngIf="exist">
+  <h1 style="text-align: center">Device Information Page</h1>
+  <section>
+    <h3> Id : </h3>
+    <label>{{device.id}}</label>
+  </section>
+  <section>
+    <h3>cli_ADDRESS:</h3>
+    <label>{{device.cli_ADDRESS}}</label>
+  </section>
+  <section>
+    <H3>Matching Profiles : </H3>
+    <table>
+      <thead>
+      <tr>
+        <th>Profile Name</th>
+        <th>Profile Id </th>
+      </tr>
+      </thead>
+      <tbody>
+      <tr *ngFor="let fx of device.profileSet">
+        <td class="rowPointer" [routerLink]="['/profile/', fx.id]"> {{ fx.name }}</td>
+        <td>{{fx.id}}</td>
+      </tr>
+      </tbody>
+    </table>
+  </section>
+</div>
+
+<div *ngIf="!exist">
+  <h3>Sorry, device Does Not Exist</h3>
+</div>

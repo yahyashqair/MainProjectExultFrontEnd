@@ -34,16 +34,42 @@
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
-<!--Profile matching table ;-->
-<p-dataView [value]="profiles">
+<!--<label id="clickmsg"></label>-->
+<!--<div class="network-canvas"-->
+<!--     [visNetwork]="visNetwork"-->
+<!--     [visNetworkData]="visNetworkData"-->
+<!--     [visNetworkOptions]="visNetworkOptions"-->
+<!--     (initialized)="graph(this.profiles)"></div>-->
+
+<p-dataView #dv [value]="profiles" [loading]="loading"  >
   <ng-template let-profile pTemplate="listItem">
-    <div>
-      {{profile.id}}
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+      <div class="ui-g-12 ui-md-8 profile-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">Profile Id : </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.id}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">Profile Name: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.name}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">profile groupId: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.maven.groupId}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">profile artifactId : </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.maven.artifactId}}</b></div>
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-1 search-icon">
+        <button pButton type="button" icon="pi pi-search" (click)="routeprofile(profile)">More Information</button>
+      </div>
     </div>
   </ng-template>
-  <ng-template let-car pTemplate="gridItem">
-    <div class="ui-g-12 ui-md-3">
-      {{profile.name}}
+  <ng-template let-profile pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+      <p-panel [header]="profile.vin" [style]="{'text-align':'center'}">
+        <div class="profile-detail">{{profile.id}} - {{profile.name}}</div>
+        <hr class="ui-widget-content" style="border-top:0">
+      </p-panel>
     </div>
   </ng-template>
 </p-dataView>

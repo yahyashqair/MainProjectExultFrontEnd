@@ -33,6 +33,9 @@ import {LoaderComponent} from './Component/device/loader/loader.component';
 import {FileSelectDirective} from 'ng2-file-upload';
 import {MatchingComponent} from './Component/profile/matching/matching.component';
 import {ReactiveFormsModule} from '@angular/forms';
+import { HomeComponent } from './Component/device/home/home.component';
+import {DeviceInfoComponent} from './Component/Info/device-info/device-info.component';
+
 
 @NgModule({
   declarations: [
@@ -50,7 +53,9 @@ import {ReactiveFormsModule} from '@angular/forms';
     NfeatureComponent,
     NxdeComponent,
     LoaderComponent, FileSelectDirective,
-    MatchingComponent
+    MatchingComponent,
+    HomeComponent,
+    DeviceInfoComponent
   ],
   imports: [
     CommonModule,
