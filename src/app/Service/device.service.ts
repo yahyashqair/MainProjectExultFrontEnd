@@ -18,6 +18,9 @@ export class DeviceService {
   public getDevice(id: number) {
     return this.http.get<Device>(this.urlDevice + id);
   }
+  public addDevice(data: any) {
+    return this.http.post<Device[]>(this.urlDevice, data);
+  }
 
   constructor(private http: HttpClient) {
   }
