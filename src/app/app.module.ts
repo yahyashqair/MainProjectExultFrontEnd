@@ -32,9 +32,10 @@ import {NxdeComponent} from './Component/xde/nxde/nxde.component';
 import {LoaderComponent} from './Component/device/loader/loader.component';
 import {FileSelectDirective} from 'ng2-file-upload';
 import {MatchingComponent} from './Component/profile/matching/matching.component';
-import {ReactiveFormsModule} from '@angular/forms';
-import { HomeComponent } from './Component/device/home/home.component';
+import {FormsModule, ReactiveFormsModule} from '@angular/forms';
+import {HomeComponent} from './Component/device/home/home.component';
 import {DeviceInfoComponent} from './Component/Info/device-info/device-info.component';
+import {DropdownModule} from 'primeng/dropdown';
 
 
 @NgModule({
@@ -62,7 +63,8 @@ import {DeviceInfoComponent} from './Component/Info/device-info/device-info.comp
     BrowserModule, HttpClientModule, AppRoutingModule, VisModule, DataViewModule, PanelModule,
     DialogModule,
     TabViewModule,
-    CodeHighlighterModule, DataGridModule, BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule, ReactiveFormsModule
+    CodeHighlighterModule, DataGridModule, DropdownModule,
+    BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule, ReactiveFormsModule, FormsModule
   ],
   providers: [],
   bootstrap: [AppComponent]

@@ -33,7 +33,7 @@ export interface Device {
   CLI_LOGIN_PASSWORD: string;
   CLI_PORT: string;
   CLI_TRANSPORT: string;
-  cli_enable_password: string;
+  CLI_ENABLE_PASSWORD: string;
   SNMP_READ_CS: string;
   SNMP_PORT: string;
   localDateTime: string;

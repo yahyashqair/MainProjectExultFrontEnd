@@ -55,6 +55,7 @@ export interface ProfilePage {
   totalElements: number;
   totalPages: number;
   number: number;
+  localDateTime: string;
 }
 
 export interface Profile {

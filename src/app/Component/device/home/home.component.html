@@ -2,41 +2,46 @@
   Device Home !
   <br>
   <button type="button" class="btn btn-outline-primary btn-lg" (click)="showform()">Insert</button>
-<button type="button" class="btn btn-outline-success btn-lg">Update</button>
+  <button type="button" class="btn btn-outline-success btn-lg">Update</button>
 </div>
 
 <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()" class="form" *ngIf="showForm">
   <div class="form-group">
-    <label >    CLI_ADDRESS:</label>
-    <input formControlName="CLI_ADDRESS" type="email" class="form-control"  placeholder="Enter CLI_ADDRESS">
+    <label> IP Address:</label>
+    <input formControlName="CLI_ADDRESS" type="email" class="form-control" placeholder="Enter CLI_ADDRESS">
   </div>
   <div class="form-group">
-    <label >    CLI_LOGIN_USERNAME:</label>
-    <input formControlName="CLI_ADDRESS" formControlName="CLI_LOGIN_USERNAME" type="email" class="form-control"  placeholder="Enter CLI_LOGIN_USERNAME">
+    <label> Username:</label>
+    <input formControlName="CLI_LOGIN_USERNAME" type="password" class="form-control"
+           placeholder="Enter CLI_LOGIN_USERNAME">
   </div>
   <div class="form-group">
-    <label >    CLI_LOGIN_PASSWORD:</label>
-    <input formControlName="CLI_ADDRESS" formControlName="CLI_LOGIN_PASSWORD" type="email" class="form-control"  placeholder="Enter CLI_LOGIN_PASSWORD">
+    <label> Password:</label>
+    <input formControlName="CLI_LOGIN_PASSWORD" type="password" class="form-control"
+           placeholder="Enter CLI_LOGIN_PASSWORD">
+
   </div>
   <div class="form-group">
-    <label >    CLI_PORT:</label>
-    <input formControlName="CLI_ADDRESS" formControlName="CLI_PORT" type="text" class="form-control"  placeholder="Enter CLI_PORT">
+    <label> CLI_PORT:</label>
+    <input formControlName="CLI_PORT" type="text" class="form-control" placeholder="Enter CLI_PORT">
   </div>
   <div class="form-group">
-    <label >    CLI_TRANSPORT:</label>
-    <input formControlName="CLI_ADDRESS" formControlName="CLI_TRANSPORT" type="text" class="form-control"  placeholder="Enter CLI_TRANSPORT">
+    <label> CLI_TRANSPORT:</label>
+    <p-dropdown [options]="transportType" formControlName="CLI_TRANSPORT"></p-dropdown>
+<!--    <input formControlName="CLI_TRANSPORT" type="text" class="form-control" placeholder="Enter CLI_TRANSPORT">-->
   </div>
   <div class="form-group">
-    <label >    SNMP_PORT:</label>
-    <input formControlName="CLI_ADDRESS" formControlName="SNMP_PORT" type="text" class="form-control"  placeholder="Enter SNMP_PORT">
+    <label> SNMP_PORT:</label>
+    <input formControlName="SNMP_PORT" type="text" class="form-control" placeholder="Enter SNMP_PORT">
   </div>
   <div class="form-group">
-    <label >    SNMP_READ_CS :</label>
-    <input formControlName="CLI_ADDRESS" formControlName="SNMP_READ_CS" type="text" class="form-control"  placeholder="Enter SNMP_READ_CS ">
+    <label> SNMP_READ_CS :</label>
+    <input formControlName="SNMP_READ_CS" type="text" class="form-control" placeholder="Enter SNMP_READ_CS ">
   </div>
   <div class="form-group">
-    <label >    cli_enable_password :</label>
-    <input formControlName="CLI_ADDRESS" formControlName="cli_enable_password" type="text" class="form-control"  placeholder="Enter cli_enable_password">
+    <label> CLI_ENABLE_PASSWORD :</label>
+    <input formControlName="CLI_ENABLE_PASSWORD" type="text" class="form-control"
+           placeholder="Enter cli_enable_password">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
@@ -47,19 +52,19 @@
     <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
       <div class="ui-g-12 ui-md-8 device-details">
         <div class="ui-g">
-          <div class="ui-g-2 ui-sm-6">device Id : </div>
+          <div class="ui-g-2 ui-sm-6">device Id :</div>
           <div class="ui-g-10 ui-sm-6"><b>{{device.id}}</b></div>
 
-          <div class="ui-g-2 ui-sm-6">device cli_ADDRESS: </div>
+          <div class="ui-g-2 ui-sm-6">device cli_ADDRESS:</div>
           <div class="ui-g-10 ui-sm-6"><b>{{device.CLI_ADDRESS}}</b></div>
 
-          <div class="ui-g-2 ui-sm-6">device cli_LOGIN_USERNAME: </div>
+          <div class="ui-g-2 ui-sm-6">device cli_LOGIN_USERNAME:</div>
           <div class="ui-g-10 ui-sm-6"><b>{{device.CLI_LOGIN_USERNAME}}</b></div>
 
-          <div class="ui-g-2 ui-sm-6">device cli_TRANSPORT : </div>
+          <div class="ui-g-2 ui-sm-6">device cli_TRANSPORT :</div>
           <div class="ui-g-10 ui-sm-6"><b>{{device.CLI_TRANSPORT}}</b></div>
 
-          <div class="ui-g-2 ui-sm-6">Last modify : </div>
+          <div class="ui-g-2 ui-sm-6">Last modify :</div>
           <div class="ui-g-10 ui-sm-6"><b>{{device.localDateTime}}</b></div>
         </div>
       </div>
