@@ -18,6 +18,7 @@ export class DeviceService {
   public getDevice(id: number) {
     return this.http.get<Device>(this.urlDevice + id);
   }
+
   public addDevice(data: any) {
     return this.http.post<Device[]>(this.urlDevice, data);
   }
@@ -27,13 +28,14 @@ export class DeviceService {
 }
 
 export interface Device {
-  cli_ADDRESS: string;
-  cli_LOGIN_USERNAME: string;
-  cli_LOGIN_PASSWORD: string;
-  cli_PORT: string;
-  cli_TRANSPORT: string;
+  CLI_ADDRESS: string;
+  CLI_LOGIN_USERNAME: string;
+  CLI_LOGIN_PASSWORD: string;
+  CLI_PORT: string;
+  CLI_TRANSPORT: string;
   cli_enable_password: string;
-  snmp_READ_CS: string;
-  snmp_PORT: string;
+  SNMP_READ_CS: string;
+  SNMP_PORT: string;
+  localDateTime: string;
   profileSet: Profile[];
 }
