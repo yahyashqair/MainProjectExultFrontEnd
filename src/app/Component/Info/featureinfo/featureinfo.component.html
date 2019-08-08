@@ -13,13 +13,13 @@
   <section>
     <h3>maven Info:</h3>
     <label>
-      <h6>groupId</h6> : {{feature.maven.groupId}}
+      <h6>groupId</h6>  {{feature.maven.groupId}}
     </label><Br>
     <label>
-      <h6>artifactId</h6> : {{feature.maven.artifactId}}
+      <h6>artifactId</h6>  {{feature.maven.artifactId}}
     </label><br>
     <label>
-      <h6>version</h6> : {{feature.maven.version}}
+      <h6>version</h6>  {{feature.maven.version}}
     </label><Br>
   </section>
   <section>
@@ -28,9 +28,9 @@
         <thead>
             <tr>
                 <th>Xde Name</th>
-                <th>Type Of Relation</th>                                       
+                <th>Type Of Relation</th>
             </tr>
-        </thead>.
+        </thead>
       <tbody>
       <tr *ngFor="let fx of feature.xdeSet">
         <td class="rowPointer" [routerLink]="['/xde/', fx.xde.id]"> {{ fx.xde.name }}</td>

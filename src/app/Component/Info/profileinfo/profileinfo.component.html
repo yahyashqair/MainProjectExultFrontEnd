@@ -13,13 +13,13 @@
     <section>
       <h3>maven Info:</h3>
       <label>
-        <h6>groupId</h6> : {{profile.maven.groupId}}
+        <h6>groupId:</h6> {{profile.maven.groupId}}
       </label><Br>
       <label>
-        <h6>artifactId</h6> : {{profile.maven.artifactId}}
+        <h6>artifactId: </h6> {{profile.maven.artifactId}}
       </label><br>
       <label>
-        <h6>version</h6> : {{profile.maven.version}}
+        <h6>version:</h6> {{profile.maven.version}}
       </label><Br>
     </section>
     <section>
@@ -30,7 +30,7 @@
                   <th>Feature ID</th>
                   <th>Feature Name</th>
               </tr>
-          </thead>.
+          </thead>
         <tbody>
         <tr *ngFor="let feature of profile.features">
             <td>{{feature.id}}</td>
@@ -51,7 +51,7 @@
                   <td>Configurations Set</td>
 
                 </tr>
-            </thead>.
+            </thead>
           <tbody>
           <tr *ngFor="let criteria of profile.criteriaSet">
               <td>{{criteria.id}}</td>

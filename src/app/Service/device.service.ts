@@ -9,12 +9,16 @@ import {FormControl} from '@angular/forms';
 export class DeviceService {
 
   urlAllDevice = 'http://localhost:8080/device/';
+  urlSync = 'http://localhost:8080/device/sync/';
+
   urlDevice = 'http://localhost:8080/device/';
 
   public GetDevices() {
     return this.http.get<Device[]>(this.urlAllDevice);
   }
-
+  public syncDevice(id: number) {
+    return this.http.get<Device>(this.urlSync+id);
+  }
   public getDevice(id: number) {
     return this.http.get<Device>(this.urlDevice + id);
   }

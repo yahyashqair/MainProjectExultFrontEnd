@@ -20,7 +20,7 @@ export class HomeComponent implements OnInit {
     CLI_LOGIN_USERNAME: new FormControl(''),
     CLI_LOGIN_PASSWORD: new FormControl(''),
     CLI_PORT: new FormControl(''),
-    CLI_TRANSPORT: new FormGroup(''),
+    CLI_TRANSPORT: new FormControl('161'),
     CLI_ENABLE_PASSWORD: new FormControl(''),
     SNMP_READ_CS: new FormControl(''),
     SNMP_PORT: new FormControl('')
@@ -33,6 +33,8 @@ export class HomeComponent implements OnInit {
       {label: 'Telnet', value: 'telent'},
       {label: 'SSH2', value: 'ssh2'},
     ];
+    // this.CLI_PORT.setValue("161");
+    this.deviceForm.patchValue({SNMP_PORT: '161'});
   }
 
   sendRequest() {

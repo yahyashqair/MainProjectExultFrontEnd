@@ -4,17 +4,17 @@
       <h3>Name:</h3>
     <label>{{xde.name}}</label>
   </section>
-  
+
   <section>
       <h3>id:</h3>
       <label>{{xde.id}}</label>
     </section>
-    
+
   <section>
       <h3>maven Info:</h3>
-      <label> <h6>groupId</h6> : {{xde.maven.groupId}}</label><Br>
-      <label> <h6>artifactId</h6> : {{xde.maven.artifactId}}</label><br>
-      <label> <h6>version</h6>  : {{xde.maven.version}}</label><Br>
+      <label> <h6>groupId</h6>  {{xde.maven.groupId}}</label><Br>
+      <label> <h6>artifactId</h6>  {{xde.maven.artifactId}}</label><br>
+      <label> <h6>version</h6>   {{xde.maven.version}}</label><Br>
     </section>
 </div>
 <div *ngIf="!exist">

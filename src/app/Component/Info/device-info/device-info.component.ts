@@ -35,4 +35,10 @@ export class DeviceInfoComponent implements OnInit {
     );
   }
 
+  sync() {
+    this.deviceService.syncDevice(this.id).subscribe(data => {
+      console.log(data);
+      this.device = data;
+    });
+  }
 }
