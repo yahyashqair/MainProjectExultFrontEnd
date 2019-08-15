@@ -16,9 +16,11 @@ export class DeviceService {
   public GetDevices() {
     return this.http.get<Device[]>(this.urlAllDevice);
   }
+
   public syncDevice(id: number) {
-    return this.http.get<Device>(this.urlSync+id);
+    return this.http.get<Device>(this.urlSync + id);
   }
+
   public getDevice(id: number) {
     return this.http.get<Device>(this.urlDevice + id);
   }
@@ -32,6 +34,7 @@ export class DeviceService {
 }
 
 export interface Device {
+  id: number;
   CLI_ADDRESS: string;
   CLI_LOGIN_USERNAME: string;
   CLI_LOGIN_PASSWORD: string;
@@ -42,4 +45,5 @@ export interface Device {
   SNMP_PORT: string;
   localDateTime: string;
   profileSet: Profile[];
+  name: String;
 }

@@ -1,8 +1,8 @@
 <div class="main">
-  Device Home !
+  Device Home
   <br>
   <button type="button" class="btn btn-outline-primary btn-lg" (click)="showform()">Insert</button>
-  <button type="button" class="btn btn-outline-success btn-lg">Update</button>
+<!--  <button type="button" class="btn btn-outline-success btn-lg">Update</button>-->
 </div>
 
 <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()" class="form" *ngIf="showForm">
@@ -33,45 +33,33 @@
 
   <div class="form-group">
     <label> SNMP Port:</label>
-    <input formControlName="SNMP_PORT" type="text" class="form-control" >
+    <input formControlName="SNMP_PORT" type="text" class="form-control">
   </div>
   <div class="form-group">
-    <label> SNMP Read Cs :</label>
-    <input formControlName="SNMP_READ_CS" type="password" class="form-control" placeholder="Enter SNMP_READ_CS ">
+    <label> Read Community :</label>
+    <input formControlName="SNMP_READ_CS" type="password" class="form-control" placeholder="Enter Read Community ">
   </div>
   <div class="form-group">
-    <label> CLI_ENABLE_PASSWORD :</label>
+    <label> Enable Password :</label>
     <input formControlName="CLI_ENABLE_PASSWORD" type="password" class="form-control"
-           placeholder="Enter cli_enable_password">
+           placeholder="Enable Password">
   </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
+<p-messages [(value)]="msgs"></p-messages>
 
 <p-dataView #dv [value]="devices">
   <ng-template let-device pTemplate="listItem">
-    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
-      <div class="ui-g-12 ui-md-8 device-details">
-        <div class="ui-g">
-          <div class="ui-g-2 ui-sm-6">device Id :</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{device.id}}</b></div>
-
-          <div class="ui-g-2 ui-sm-6">device cli_ADDRESS:</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{device.CLI_ADDRESS}}</b></div>
-
-          <div class="ui-g-2 ui-sm-6">device cli_LOGIN_USERNAME:</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{device.CLI_LOGIN_USERNAME}}</b></div>
-
-          <div class="ui-g-2 ui-sm-6">device cli_TRANSPORT :</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{device.CLI_TRANSPORT}}</b></div>
-
-          <div class="ui-g-2 ui-sm-6">Last modify :</div>
-          <div class="ui-g-10 ui-sm-6"><b>{{device.localDateTime}}</b></div>
+    <div class="ui-g" style="border-bottom: 1px solid #d9d9d9">
+      <div class="ui-g-2 ">device Name :</div>
+      <div class="ui-g-2 "><b>{{device.name}}</b></div>
+      <div class="ui-g-2 ">device cli_ADDRESS:</div>
+      <div class="ui-g-2 "><b>{{device.CLI_ADDRESS}}</b></div>
+      <div class="ui-g-2">  <button pButton class="btn btn-outline-success btn-lg"type="button" icon="pi pi-search" (click)="routedevice(device)">Device Page</button>
+      </div>
+        <div class="ui-g-2">  <button pButton class="btn btn-outline-primary btn-lg"type="button" icon="pi pi-search" (click)="syncDevice(device.id)">Sync Device</button>
         </div>
-      </div>
-      <div class="ui-g-12 ui-md-1 search-icon">
-        <button pButton type="button" icon="pi pi-search" (click)="routedevice(device)">More Information</button>
-      </div>
     </div>
   </ng-template>
   <ng-template let-device pTemplate="gridItem">

@@ -1,34 +1,40 @@
 <div class="card" *ngIf="exist">
   <h1 style="text-align: center">Device Information Page</h1>
   <button type="button" class="btn btn-outline-success btn-lg w-25 m-auto" (click)="sync()">Sync Device !</button>
-  <section>
-    <h3> Id : </h3>
-    <label>{{device.id}}</label>
-  </section>
-  <section>
-    <h3>cli_ADDRESS:</h3>
-    <label>{{device.CLI_ADDRESS}}</label>
-  </section>
-  <section>
-    <h3>CLI_PORT:</h3>
-    <label>{{device.CLI_PORT}}</label>
-  </section>
-  <section>
-    <h3>CLI_TRANSPORT:</h3>
-    <label>{{device.CLI_TRANSPORT}}</label>
-  </section>
-  <section>
-    <h3>last modify:</h3>
-    <label>{{device.localDateTime}}</label>
-  </section>
 
   <section>
-    <H3>Matching Profiles : </H3>
+    <div class = "ui-g-6">    IP Address: </div>
+    <div class = "ui-g-6">    <label>{{device.CLI_ADDRESS}}</label></div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      Port:
+    </div>
+    <div class = "ui-g-6">{{device.CLI_PORT}}</div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      Protocol:
+    </div>
+    <div class="ui-g-6">
+      <label>{{device.CLI_TRANSPORT}}</label>
+    </div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      <label>last sync:</label>
+    </div>
+    <div class="ui-g-6">
+      <label>{{device.localDateTime}}</label>
+    </div>
+  </section>
+  <section>
+    <h5>Matching Profiles : </h5>
     <table>
       <thead>
       <tr>
         <th>Profile Name</th>
-        <th>Profile Id </th>
+        <th>Profile Id</th>
       </tr>
       </thead>
       <tbody>

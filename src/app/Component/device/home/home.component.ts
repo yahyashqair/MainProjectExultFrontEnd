@@ -3,6 +3,7 @@ import {Device, DeviceService} from '../../../Service/device.service';
 import {Profile} from '../../../Service/profile.service';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
+import {Message} from 'primeng/api';
 
 @Component({
   selector: 'app-home',
@@ -15,6 +16,7 @@ export class HomeComponent implements OnInit {
   transportType: any;
   selectedType: any;
   obj: any;
+  msgs: Message[] = [];
   deviceForm = new FormGroup({
     CLI_ADDRESS: new FormControl(''),
     CLI_LOGIN_USERNAME: new FormControl(''),
@@ -35,6 +37,14 @@ export class HomeComponent implements OnInit {
     ];
     // this.CLI_PORT.setValue("161");
     this.deviceForm.patchValue({SNMP_PORT: '161'});
+  }
+
+  show() {
+    this.msgs.push({severity: 'info', summary: 'Info Message', detail: 'Done Successfully'});
+  }
+
+  hide() {
+    this.msgs = [];
   }
 
   sendRequest() {
@@ -59,6 +69,14 @@ export class HomeComponent implements OnInit {
     this.deviceService.addDevice(this.obj).subscribe(data => {
       console.log(data);
     });
+  }
+
+  syncDevice(id: number) {
+    this.deviceService.syncDevice(id).subscribe(data => {
+      console.log(data);
+      this.show();
+    });
+
   }
 
   showform() {

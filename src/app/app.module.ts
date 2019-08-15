@@ -36,7 +36,8 @@ import {FormsModule, ReactiveFormsModule} from '@angular/forms';
 import {HomeComponent} from './Component/device/home/home.component';
 import {DeviceInfoComponent} from './Component/Info/device-info/device-info.component';
 import {DropdownModule} from 'primeng/dropdown';
-
+import {MessagesModule} from 'primeng/messages';
+import {MessageModule} from 'primeng/message';
 
 @NgModule({
   declarations: [
@@ -62,7 +63,7 @@ import {DropdownModule} from 'primeng/dropdown';
     CommonModule,
     BrowserModule, HttpClientModule, AppRoutingModule, VisModule, DataViewModule, PanelModule,
     DialogModule,
-    TabViewModule,
+    TabViewModule, MessagesModule, MessageModule,
     CodeHighlighterModule, DataGridModule, DropdownModule,
     BrowserAnimationsModule, AccordionModule, TooltipModule, TableModule, ReactiveFormsModule, FormsModule
   ],
