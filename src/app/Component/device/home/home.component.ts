@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {Component, OnInit, PipeTransform} from '@angular/core';
 import {Device, DeviceService} from '../../../Service/device.service';
 import {Profile} from '../../../Service/profile.service';
 import {Router} from '@angular/router';
@@ -59,10 +59,9 @@ export class HomeComponent implements OnInit {
     this.sendRequest();
   }
 
-  routedevice(profile: Profile) {
+  routedevice(profile: Device) {
     this.rout.navigateByUrl('device/' + profile.id);
   }
-
   onSubmit() {
     this.obj = this.deviceForm.value;
     console.log(this.obj);

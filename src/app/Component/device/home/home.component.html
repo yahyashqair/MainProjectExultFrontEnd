@@ -49,25 +49,27 @@
 
 <p-messages [(value)]="msgs"></p-messages>
 
-<p-dataView #dv [value]="devices">
-  <ng-template let-device pTemplate="listItem">
-    <div class="ui-g" style="border-bottom: 1px solid #d9d9d9">
-      <div class="ui-g-2 ">device Name :</div>
-      <div class="ui-g-2 "><b>{{device.name}}</b></div>
-      <div class="ui-g-2 ">device cli_ADDRESS:</div>
-      <div class="ui-g-2 "><b>{{device.CLI_ADDRESS}}</b></div>
-      <div class="ui-g-2">  <button pButton class="btn btn-outline-success btn-lg"type="button" icon="pi pi-search" (click)="routedevice(device)">Device Page</button>
-      </div>
-        <div class="ui-g-2">  <button pButton class="btn btn-outline-primary btn-lg"type="button" icon="pi pi-search" (click)="syncDevice(device.id)">Sync Device</button>
-        </div>
-    </div>
-  </ng-template>
-  <ng-template let-device pTemplate="gridItem">
-    <div style="padding:.5em" class="ui-g-12 ui-md-3">
-      <p-panel [header]="device.vin" [style]="{'text-align':'center'}">
-        <div class="device-detail">{{device.id}} - {{device.cli_ADDRESS}}</div>
-        <hr class="ui-widget-content" style="border-top:0">
-      </p-panel>
-    </div>
-  </ng-template>
-</p-dataView>
+
+<table class="table table-striped ">
+  <thead class="thead-light">
+  <tr>
+    <th scope="col">#</th>
+    <th scope="col">Name</th>
+    <th scope="col">Address</th>
+    <th scope="col">Device Page</th>
+    <th scope="col">Device Sync</th>
+  </tr>
+  </thead>
+  <tbody>
+  <tr *ngFor="let device of devices; index as i">
+    <th scope="row">{{ i + 1 }}</th>
+    <td>{{ device.name  }}</td>
+    <td>{{ device.CLI_ADDRESS }}</td>
+    <td> <button pButton class="btn btn-outline-success btn-lg"type="button" icon="pi pi-search" (click)="routedevice(device)">Device Page</button>
+    </td>
+    <td> <button pButton class="btn btn-outline-primary btn-lg"type="button" icon="pi pi-search" (click)="syncDevice(device.id)">Sync Device</button>
+    </td>
+  </tr>
+  </tbody>
+</table>
+
