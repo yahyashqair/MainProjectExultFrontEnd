@@ -10,7 +10,6 @@ export class DeviceService {
 
   urlAllDevice = 'http://localhost:8080/device/';
   urlSync = 'http://localhost:8080/device/sync/';
-
   urlDevice = 'http://localhost:8080/device/';
 
   public GetDevices() {
