@@ -15,6 +15,7 @@ export class HomeComponent implements OnInit {
   showForm: boolean;
   transportType: any;
   selectedType: any;
+  selectedProtocol: any;
   obj: any;
   msgs: Message[] = [];
   deviceForm = new FormGroup({
@@ -32,15 +33,15 @@ export class HomeComponent implements OnInit {
   constructor(private deviceService: DeviceService, private rout: Router) {
     this.transportType = [
       {label: 'Select City', value: null},
-      {label: 'Telnet', value: 'telent'},
+      {label: 'Telnet', value: 'telnet'},
       {label: 'SSH2', value: 'ssh2'},
     ];
     // this.CLI_PORT.setValue("161");
     this.deviceForm.patchValue({SNMP_PORT: '161'});
   }
 
-  show() {
-    this.msgs.push({severity: 'info', summary: 'Info Message', detail: 'Done Successfully'});
+  show(type: string, msg: string) {
+    this.msgs.push({severity: type, summary: 'Message', detail: msg});
   }
 
   hide() {
@@ -62,20 +63,37 @@ export class HomeComponent implements OnInit {
   routedevice(profile: Device) {
     this.rout.navigateByUrl('device/' + profile.id);
   }
+
   onSubmit() {
     this.obj = this.deviceForm.value;
     console.log(this.obj);
     this.deviceService.addDevice(this.obj).subscribe(data => {
-      console.log(data);
-    });
+        console.log(data);
+        this.show('success', 'Add Successfully');
+      },
+      error => {
+        this.show('danger', 'Error');
+      });
   }
 
   syncDevice(id: number) {
     this.deviceService.syncDevice(id).subscribe(data => {
       console.log(data);
-      this.show();
+      this.show('info', 'device is Synced');
+    }, err => {
+      this.show('danger', 'Error: ' + err);
     });
 
+  }
+
+  selectProtocol(event) {
+    console.log(event);
+    console.log(this.selectedProtocol);
+    if (this.selectedProtocol === 'telnet') {
+      this.deviceForm.patchValue({CLI_PORT: '23'});
+    } else if (this.selectedProtocol === 'ssh2') {
+      this.deviceForm.patchValue({CLI_PORT: '22'});
+    }
   }
 
   showform() {

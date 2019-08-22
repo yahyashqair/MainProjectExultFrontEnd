@@ -23,7 +23,7 @@
   </div>
   <div class="form-group">
     <label> Protocol:</label>
-    <p-dropdown [options]="transportType" formControlName="CLI_TRANSPORT"></p-dropdown>
+    <p-dropdown [options]="transportType" formControlName="CLI_TRANSPORT" [(ngModel)]="selectedProtocol" (click)="selectProtocol($event)"></p-dropdown>
     <!--    <input formControlName="CLI_TRANSPORT" type="text" class="form-control" placeholder="Enter CLI_TRANSPORT">-->
   </div>
   <div class="form-group">
@@ -33,7 +33,7 @@
 
   <div class="form-group">
     <label> SNMP Port:</label>
-    <input formControlName="SNMP_PORT" type="text" class="form-control">
+    <input formControlName="SNMP_PORT" type="text" class="form-control" >
   </div>
   <div class="form-group">
     <label> Read Community :</label>
