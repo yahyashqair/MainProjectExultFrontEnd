@@ -8,14 +8,14 @@ import {ServerService} from './server/server.service';
 })
 export class FeatureService {
   getAllFeatureUrl = 'http://localhost:8080/feature/all/?';
-  getAllFeatureUrl = 'http://localhost:8080/feature/server/';
+  getAllFeatureUrlBelongToServer = 'http://localhost:8080/feature/server/';
   featureURL = 'http://localhost:8080/feature/';
   searchURL = 'http://localhost:8080/feature/search/';
 
   id = 1;
 
   GetFeatures(pagenumber: number, pagesize: number) {
-    return this.http.get<FeaturePage>(this.getAllFeatureUrl +this.serverService.getCurrentServer()+"/" +
+    return this.http.get<FeaturePage>(this.getAllFeatureUrlBelongToServer +this.serverService.getCurrentServer()+"/" +
       + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
   }
 
