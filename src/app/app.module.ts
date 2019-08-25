@@ -38,6 +38,7 @@ import {DeviceInfoComponent} from './Component/Info/device-info/device-info.comp
 import {DropdownModule} from 'primeng/dropdown';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
+import { ServerHomeComponent } from './Component/server/server-home/server-home.component';
 
 @NgModule({
   declarations: [
@@ -57,7 +58,8 @@ import {MessageModule} from 'primeng/message';
     LoaderComponent, FileSelectDirective,
     MatchingComponent,
     HomeComponent,
-    DeviceInfoComponent
+    DeviceInfoComponent,
+    ServerHomeComponent
   ],
   imports: [
     CommonModule,
