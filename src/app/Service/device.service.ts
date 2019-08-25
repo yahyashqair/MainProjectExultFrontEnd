@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Profile} from './profile.service';
 import {HttpClient} from '@angular/common/http';
 import {FormControl} from '@angular/forms';
+import {ServerService} from './server/server.service';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +10,12 @@ import {FormControl} from '@angular/forms';
 export class DeviceService {
 
   urlAllDevice = 'http://localhost:8080/device/';
+  urlAllDeviceBelongToServer = 'http://localhost:8080/device/server/';
   urlSync = 'http://localhost:8080/device/sync/';
   urlDevice = 'http://localhost:8080/device/';
 
   public GetDevices() {
-    return this.http.get<Device[]>(this.urlAllDevice);
+    return this.http.get<Device[]>(this.urlAllDeviceBelongToServer+this.serverService.getCurrentServer());
   }
 
   public syncDevice(id: number) {
@@ -28,7 +30,7 @@ export class DeviceService {
     return this.http.post<Device[]>(this.urlDevice, data);
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient,private serverService:ServerService) {
   }
 }
 

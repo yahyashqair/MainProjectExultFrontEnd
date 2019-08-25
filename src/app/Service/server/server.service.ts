@@ -16,14 +16,14 @@ export class ServerService {
   }
 
   public getServer(id: number) {
-    return this.http.get<Server>(this.urlDevice + id);
+    return this.http.get<Server>(this.urlServer + id);
   }
   public readData(id:number){
     return this.http.get(this.urlReadData+id);
   }
 
   public addServer(data: any) {
-    return this.http.post<Server[]>(this.urlDevice, data);
+    return this.http.post<Server[]>(this.urlServer, data);
   }
 
   public getCurrentServer(){

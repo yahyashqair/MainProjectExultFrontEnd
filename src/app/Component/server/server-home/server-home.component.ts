@@ -51,7 +51,7 @@ export class ServerHomeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.obj = this.deviceForm.value;
+    this.obj = this.serverForm.value;
     console.log(this.obj);
     this.serverService.addServer(this.obj).subscribe(data => {
         console.log(data);
