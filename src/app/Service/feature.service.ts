@@ -15,8 +15,13 @@ export class FeatureService {
   id = 1;
 
   GetFeatures(pagenumber: number, pagesize: number) {
-    return this.http.get<FeaturePage>(this.getAllFeatureUrlBelongToServer +this.serverService.getCurrentServer()+"/" +
-      + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
+    return this.http.get<FeaturePage>(this.getAllFeatureUrlBelongToServer + this.serverService.getCurrentServer() + '/' +
+      +'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
+  }
+
+  GetFeaturesBelongToServer(id: number, pagenumber: number, pagesize: number) {
+    return this.http.get<FeaturePage>(this.getAllFeatureUrlBelongToServer + id + '/' +
+      +'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
   }
 
   getFeature(id: number) {
@@ -27,7 +32,7 @@ export class FeatureService {
     return this.http.get<Feature[]>(this.searchURL + qstring);
   }
 
-  constructor(private http: HttpClient,private serverService : ServerService) {
+  constructor(private http: HttpClient, private serverService: ServerService) {
   }
 }
 

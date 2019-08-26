@@ -2,6 +2,7 @@ import {Injectable} from '@angular/core';
 import {Maven} from './get-xdes.service';
 import {Feature} from './feature.service';
 import {HttpClient} from '@angular/common/http';
+import {ServerService} from './server/server.service';
 
 @Injectable({
   providedIn: 'root'
@@ -15,9 +16,18 @@ export class ProfileService {
   urlRelatios = 'http://localhost:8080/profile/relations/';
   urlSearch = 'http://localhost:8080/profile/search/';
   urlMatching = 'http://localhost:8080/profile/match/';
+  urlAllProfileBelongToServer = 'http://localhost:8080/profile/server/';
 
   GetProfiles() {
     return this.http.get<Profile[]>(this.urlAllProfile);
+  }
+
+  getProfilesBelongToServer() {
+    return this.http.get<Profile[]>(this.urlAllProfileBelongToServer + this.serverService.getCurrentServer());
+  }
+
+  getProfilesBelongTo(id: number) {
+    return this.http.get<Profile[]>(this.urlAllProfileBelongToServer + id);
   }
 
   getProfile(id: number) {
@@ -46,7 +56,7 @@ export class ProfileService {
     return this.http.get<Profile[]>(this.urlParent + id);
   }
 
-  constructor(private http: HttpClient) {
+  constructor(private http: HttpClient, private serverService: ServerService) {
   }
 }
 
