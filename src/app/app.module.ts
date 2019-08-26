@@ -39,6 +39,7 @@ import {DropdownModule} from 'primeng/dropdown';
 import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { ServerHomeComponent } from './Component/server/server-home/server-home.component';
+import { ServerPageComponent } from './Component/server/server-page/server-page.component';
 
 @NgModule({
   declarations: [
@@ -59,7 +60,8 @@ import { ServerHomeComponent } from './Component/server/server-home/server-home.
     MatchingComponent,
     HomeComponent,
     DeviceInfoComponent,
-    ServerHomeComponent
+    ServerHomeComponent,
+    ServerPageComponent
   ],
   imports: [
     CommonModule,

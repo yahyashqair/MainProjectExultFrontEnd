@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {Device, DeviceService} from '../../../Service/device.service';
 import {Message} from 'primeng/api';
 import {FormControl, FormGroup} from '@angular/forms';
@@ -46,8 +46,8 @@ export class ServerHomeComponent implements OnInit {
     this.sendRequest();
   }
 
-  routedevice(profile: Server) {
-    this.rout.navigateByUrl('server/' + profile.id);
+  routeServer(server: Server) {
+    this.rout.navigateByUrl('server/' + server.id);
   }
 
   onSubmit() {
@@ -64,5 +64,9 @@ export class ServerHomeComponent implements OnInit {
 
   showform() {
     this.showForm = !this.showForm;
+  }
+
+  selectServer(server: Server) {
+    this.serverService.setCurrentServer(server.id);
   }
 }

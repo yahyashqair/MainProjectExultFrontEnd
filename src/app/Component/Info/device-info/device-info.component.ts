@@ -14,7 +14,7 @@ export class DeviceInfoComponent implements OnInit {
   device: Device;
   exist: boolean = true;
 
-  constructor(private deviceService: DeviceService, private route: ActivatedRoute,) {
+  constructor(private deviceService: DeviceService, private route: ActivatedRoute) {
   }
 
   ngOnInit() {

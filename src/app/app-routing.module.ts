@@ -17,6 +17,8 @@ import {LoaderComponent} from './Component/device/loader/loader.component';
 import {MatchingComponent} from './Component/profile/matching/matching.component';
 import {HomeComponent} from './Component/device/home/home.component';
 import {DeviceInfoComponent} from './Component/Info/device-info/device-info.component';
+import {ServerHomeComponent} from './Component/server/server-home/server-home.component';
+import {ServerPageComponent} from './Component/server/server-page/server-page.component';
 const routes: Routes = [
   { path: 'xde', component: NxdeComponent },
   { path: 'xde/:id', component: XdeinfoComponent },
@@ -27,12 +29,13 @@ const routes: Routes = [
   { path: 'feature/:id', component: FeatureinfoComponent },
   { path: 'profile/:id', component: ProfileinfoComponent },
   { path: 'device/:id', component: DeviceInfoComponent },
-
   { path: 'profile', component: NProfileComponent },
   { path: 'device', component: HomeComponent },
   { path: 'upload', component: LoaderComponent },
   { path: 'matching', component: MatchingComponent },
-  { path: '', component: TreeComponent },
+  { path: 'tree', component: TreeComponent },
+  { path: 'server/:id', component: ServerPageComponent },
+  { path: '', component: ServerHomeComponent },
   { path: '**', component: ErrorlinkComponent }];
 
 @NgModule({
