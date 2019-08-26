@@ -32,7 +32,7 @@ export class ServerService {
   }
 
   constructor(private http: HttpClient) {
-    this.serverId = 0;
+    this.serverId = 1;
   }
 
   public setCurrentServer(id: number) {

@@ -17,7 +17,7 @@ export class GetXdesService {
   }
 
   getXdesBelongTo(idNumber, pagenumber: number, pagesize: number) {
-    return this.http.get<XdePage>(this.getAllXdeUrlBelongTo + idNumber + '/' + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
+    return this.http.get<XdePage>(this.getAllXdeUrlBelongTo + idNumber + '/?' + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
   }
 
 

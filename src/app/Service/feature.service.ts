@@ -15,13 +15,11 @@ export class FeatureService {
   id = 1;
 
   GetFeatures(pagenumber: number, pagesize: number) {
-    return this.http.get<FeaturePage>(this.getAllFeatureUrlBelongToServer + this.serverService.getCurrentServer() + '/' +
-      +'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
+    return this.http.get<FeaturePage>(this.getAllFeatureUrlBelongToServer + this.serverService.getCurrentServer() + '/?' + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
   }
 
   GetFeaturesBelongToServer(id: number, pagenumber: number, pagesize: number) {
-    return this.http.get<FeaturePage>(this.getAllFeatureUrlBelongToServer + id + '/' +
-      +'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
+    return this.http.get<FeaturePage>(this.getAllFeatureUrlBelongToServer + id + '/?' + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
   }
 
   getFeature(id: number) {

@@ -17,10 +17,10 @@ export class ServerPageComponent implements OnInit {
   private sub: any;
   server: Server;
   exist: boolean = true;
-  numberOfXdes;
-  numberOfProfiles;
-  numberOfFeatures;
-  numberOfDevices;
+  numberOfXdes: number;
+  numberOfProfiles: number;
+  numberOfFeatures: number;
+  numberOfDevices: number;
   msgs: Message[] = [];
 
   constructor(private route: ActivatedRoute, private serverService: ServerService, private deviceService: DeviceService, private featureService: FeatureService, private profileService: ProfileService, private xdeService: GetXdesService) {

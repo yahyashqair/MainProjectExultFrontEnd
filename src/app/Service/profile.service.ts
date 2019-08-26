@@ -22,6 +22,10 @@ export class ProfileService {
     return this.http.get<Profile[]>(this.urlAllProfile);
   }
 
+  getProilesBelongToServer(id: number, pagenumber: number, pagesize: number) {
+    return this.http.get<ProfilePage>(this.urlAllProfileBelongToServer + this.serverService.getCurrentServer() + '/?' + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
+  }
+
   getProfilesBelongToServer() {
     return this.http.get<Profile[]>(this.urlAllProfileBelongToServer + this.serverService.getCurrentServer());
   }
@@ -47,6 +51,7 @@ export class ProfileService {
   getProfileWithPagination(pagenumber: number, pagesize: number) {
     return this.http.get<ProfilePage>(this.getAllProfileUrl + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
   }
+
 
   searchFunction(qstring: String) {
     return this.http.get<Profile[]>(this.urlSearch + qstring);
