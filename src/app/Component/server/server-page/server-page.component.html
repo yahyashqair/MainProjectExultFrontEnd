@@ -1,6 +1,7 @@
 <div class="card" *ngIf="exist">
   <h1 style="text-align: center">Server Information Page</h1>
-
+  <button type="button" class="btn btn-outline-info btn-lg w-25 m-auto" (click)="readData()">Read Data </button>
+  <p-messages [(value)]="msgs"></p-messages>
   <section>
     <div class = "ui-g-6">    IP Address: </div>
     <div class = "ui-g-6">    <label>{{server.ipAddress}}</label></div>

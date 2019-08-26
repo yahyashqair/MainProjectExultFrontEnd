@@ -5,6 +5,7 @@ import {FeatureService} from '../../../Service/feature.service';
 import {ProfileService} from '../../../Service/profile.service';
 import {GetXdesService} from '../../../Service/get-xdes.service';
 import {Server, ServerService} from '../../../Service/server/server.service';
+import {Message} from 'primeng/api';
 
 @Component({
   selector: 'app-server-page',
@@ -20,6 +21,7 @@ export class ServerPageComponent implements OnInit {
   numberOfProfiles;
   numberOfFeatures;
   numberOfDevices;
+  msgs: Message[] = [];
 
   constructor(private route: ActivatedRoute, private serverService: ServerService, private deviceService: DeviceService, private featureService: FeatureService, private profileService: ProfileService, private xdeService: GetXdesService) {
   }
@@ -39,10 +41,6 @@ export class ServerPageComponent implements OnInit {
       this.exist = false;
       return;
     });
-    // numberOfXdes
-    // numberOfProfiles;
-    // numberOfFeatures;
-    // numberOfDevices;
 
     this.featureService.GetFeaturesBelongToServer(this.id, 1, 2).subscribe(data => {
       this.numberOfFeatures = data.totalElements;
@@ -56,5 +54,20 @@ export class ServerPageComponent implements OnInit {
       this.numberOfXdes = data.totalElements;
     });
 
+  }
+
+  hide() {
+    this.msgs = [];
+  }
+
+  show(type: string, msg: string) {
+    this.msgs.push({severity: type, summary: 'Message', detail: msg});
+  }
+
+  readData() {
+    this.serverService.readData(this.server.id).subscribe(data => {
+      console.log('Done');
+      this.show('primary', 'Data is imported Successfully');
+    });
   }
 }
