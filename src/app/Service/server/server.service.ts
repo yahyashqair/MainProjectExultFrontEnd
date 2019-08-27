@@ -1,7 +1,8 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Profile} from '../profile.service';
-import {Observable} from 'rxjs';
+import {Observable, Subject} from 'rxjs';
+import {text} from '@angular/core/src/render3/instructions';
 
 @Injectable({
   providedIn: 'root'
@@ -12,6 +13,7 @@ export class ServerService {
   urlReadData = 'http://localhost:8080/server/readData/';
   urlServer = 'http://localhost:8080/server/';
   serverId: number; // 0 Local else Not Local
+  private subject = new Subject<any>();
 
 
   public getServers() {
@@ -34,13 +36,23 @@ export class ServerService {
     return this.serverId;
   }
 
-  constructor(private http: HttpClient) {
-    this.serverId = 1;
+  public getCurrentServerUpdated(): Observable<Server> {
+    return this.subject.asObservable();
+  }
 
+
+  constructor(private http: HttpClient) {
+    this.setCurrentServer(1);
   }
 
   public setCurrentServer(id: number) {
     this.serverId = id;
+    let x;
+    this.getServer(this.serverId).subscribe(data => {
+      x = data;
+      this.subject.next(x);
+      console.log(x);
+    });
   }
 }
 

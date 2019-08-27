@@ -8,5 +8,5 @@
     <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/feature']" (click)="navbarCollapsed = false">Feature</a>
     <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/xde']" (click)="navbarCollapsed = false">Xde</a>
   </div>
-  <h3><span class="  badge badge-secondary" (click)="getServer()">Current Server IP : {{server}} Refresh</span></h3>
+  <h3><span class="  badge badge-secondary" [routerLink]="['/server']" (click)="getServer()">Current Server IP : {{server}}</span></h3>
 </nav>

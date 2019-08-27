@@ -10,13 +10,14 @@ export class NavbarComponent implements OnInit {
   server: any;
 
   constructor(private serverService: ServerService) {
-    this.server = this.serverService.getServer(this.serverService.serverId).subscribe(data => {
-      this.server = data.ipAddress;
-    });
+    this.getServer();
+    // this.server = this.serverService.getServer(this.serverService.serverId).subscribe(data => {
+    //   this.server = data.ipAddress;
+    // });
   }
 
   getServer() {
-    this.server = this.serverService.getServer(this.serverService.serverId).subscribe(data => {
+    this.serverService.getCurrentServerUpdated().subscribe(data => {
       this.server = data.ipAddress;
     });
   }
