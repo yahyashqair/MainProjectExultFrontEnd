@@ -1,3 +1,15 @@
+<div class="card-body row no-gutters align-items-center">
+
+  <div class="col">
+    <input class="form-control form-control-lg form-control-borderless" type="search" #search2
+           (keyup)="applySearch(search2.value)" placeholder="Search topics or keywords">
+  </div>
+  <!--end of col-->
+  <div class="col-auto">
+    <button class="btn btn-lg btn-success" >Search</button>
+  </div>
+  <!--end of col-->
+</div>
 <p-dataView #dv [value]="xdes" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [paginator]="true" [rows]="4" paginatorPosition="both" filterBy="brand"
 [sortField]="sortField" [sortOrder]="sortOrder">
 <ng-template let-xde pTemplate="listItem">
@@ -18,10 +30,10 @@
             </div>
         </div>
         <div class="ui-g-12 ui-md-1 search-icon">
-            <button pButton type="button" icon="pi pi-search" (click)="selectxde($event, xde)">pop up</button>
+            <button pButton type="button" icon="pi pi-search" (click)="selectprofile($event, xde)">pop up</button>
         </div>
         <div class="ui-g-12 ui-md-1 search-icon">
-            <button pButton type="button" icon="pi pi-search" (click)="routexde(xde)">More Information</button>
+            <button pButton type="button" icon="pi pi-search" (click)="routeprofile(xde)">More Information</button>
         </div>
     </div>
 </ng-template>

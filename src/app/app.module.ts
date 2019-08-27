@@ -40,6 +40,7 @@ import {MessagesModule} from 'primeng/messages';
 import {MessageModule} from 'primeng/message';
 import { ServerHomeComponent } from './Component/server/server-home/server-home.component';
 import { ServerPageComponent } from './Component/server/server-page/server-page.component';
+import { HomePageComponent } from './Component/home-page/home-page.component';
 
 @NgModule({
   declarations: [
@@ -61,7 +62,8 @@ import { ServerPageComponent } from './Component/server/server-page/server-page.
     HomeComponent,
     DeviceInfoComponent,
     ServerHomeComponent,
-    ServerPageComponent
+    ServerPageComponent,
+    HomePageComponent
   ],
   imports: [
     CommonModule,

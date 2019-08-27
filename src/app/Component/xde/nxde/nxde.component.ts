@@ -78,6 +78,16 @@ export class NxdeComponent implements OnInit {
     }
   }
 
+  applySearch(value:String){
+    console.log("Enter");
+    this.xdeService.searchFunction(value).subscribe(
+      res => {
+        this.xdes = res;
+        console.log(res);
+      }, err => console.log(err)
+    );
+  }
+
   onDialogHide() {
     this.selectedXde = null;
   }

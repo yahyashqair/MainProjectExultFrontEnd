@@ -19,6 +19,7 @@ import {HomeComponent} from './Component/device/home/home.component';
 import {DeviceInfoComponent} from './Component/Info/device-info/device-info.component';
 import {ServerHomeComponent} from './Component/server/server-home/server-home.component';
 import {ServerPageComponent} from './Component/server/server-page/server-page.component';
+import {HomePageComponent} from './Component/home-page/home-page.component';
 const routes: Routes = [
   { path: 'xde', component: NxdeComponent },
   { path: 'xde/:id', component: XdeinfoComponent },
@@ -35,7 +36,8 @@ const routes: Routes = [
   { path: 'matching', component: MatchingComponent },
   { path: 'tree', component: TreeComponent },
   { path: 'server/:id', component: ServerPageComponent },
-  { path: '', component: ServerHomeComponent },
+  { path: 'server', component: ServerHomeComponent },
+  { path: '', component: HomePageComponent},
   { path: '**', component: ErrorlinkComponent }];
 
 @NgModule({

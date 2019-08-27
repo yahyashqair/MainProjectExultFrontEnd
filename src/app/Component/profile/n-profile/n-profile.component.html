@@ -1,3 +1,15 @@
+<div class="card-body row no-gutters align-items-center">
+
+  <div class="col">
+    <input class="form-control form-control-lg form-control-borderless" type="search" #search (keyup)="applySearch(search.value)"
+           placeholder="Search topics or keywords">
+  </div>
+  <!--end of col-->
+  <div class="col-auto">
+    <button class="btn btn-lg btn-success" type="submit">Search</button>
+  </div>
+  <!--end of col-->
+</div>
 <p-dataView #dv [value]="profiles" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [paginator]="true" [rows]="4" paginatorPosition="both" filterBy="brand"
 [sortField]="sortField" [sortOrder]="sortOrder">
 <ng-template let-profile pTemplate="listItem">

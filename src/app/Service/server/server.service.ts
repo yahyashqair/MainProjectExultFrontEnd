@@ -1,6 +1,7 @@
 import {Injectable} from '@angular/core';
 import {HttpClient} from '@angular/common/http';
 import {Profile} from '../profile.service';
+import {Observable} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -10,7 +11,9 @@ export class ServerService {
   urlAllServer = 'http://localhost:8080/server/';
   urlReadData = 'http://localhost:8080/server/readData/';
   urlServer = 'http://localhost:8080/server/';
-  serverId; // 0 Local else Not Local
+  serverId: number; // 0 Local else Not Local
+
+
   public getServers() {
     return this.http.get<Server[]>(this.urlAllServer);
   }
@@ -33,6 +36,7 @@ export class ServerService {
 
   constructor(private http: HttpClient) {
     this.serverId = 1;
+
   }
 
   public setCurrentServer(id: number) {

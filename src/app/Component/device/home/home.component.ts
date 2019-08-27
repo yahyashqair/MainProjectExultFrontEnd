@@ -4,6 +4,7 @@ import {Profile} from '../../../Service/profile.service';
 import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Message} from 'primeng/api';
+import {ServerService} from '../../../Service/server/server.service';
 
 @Component({
   selector: 'app-home',
@@ -30,13 +31,12 @@ export class HomeComponent implements OnInit {
   });
 
 
-  constructor(private deviceService: DeviceService, private rout: Router) {
+  constructor(private deviceService: DeviceService, private rout: Router,private serverService:ServerService) {
     this.transportType = [
       {label: 'Select City', value: null},
       {label: 'Telnet', value: 'telnet'},
       {label: 'SSH2', value: 'ssh2'},
     ];
-    // this.CLI_PORT.setValue("161");
     this.deviceForm.patchValue({SNMP_PORT: '161'});
   }
 

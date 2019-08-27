@@ -1,10 +1,12 @@
 <nav class="navbar navbar-expand-lg navbar-light bg-light">
   <div class="container">
-    <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/']" (click)="navbarCollapsed = false">Tree</a>
+    <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/']" (click)="navbarCollapsed = false">Home</a>
+    <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/server']" (click)="navbarCollapsed = false">Server</a>
+    <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/tree']" (click)="navbarCollapsed = false">Tree</a>
     <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/device']" (click)="navbarCollapsed = false">Device</a>
     <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/profile']" (click)="navbarCollapsed = false">Profile</a>
     <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/feature']" (click)="navbarCollapsed = false">Feature</a>
     <a class="navbar-brand btn btn-outline-info btn-lg" [routerLink]="['/xde']" (click)="navbarCollapsed = false">Xde</a>
-
   </div>
+  <h3><span class="  badge badge-secondary" (click)="getServer()">Current Server IP : {{server}} Refresh</span></h3>
 </nav>
