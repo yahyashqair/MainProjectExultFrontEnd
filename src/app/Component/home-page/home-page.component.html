@@ -3,3 +3,33 @@
     Cisco Device package viewer
   </div>
 </div>
+<div class="card-header"><h3>Server List</h3>
+  <button pButton [routerLink]="['server']" class="btn btn-outline-success btn-lg" type="button" icon="pi pi-search">Add
+    Server
+  </button>
+</div>
+<div *ngFor="let server of servers" class="card">
+  <div class="card-header">
+    {{server.id}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{server.ipAddress}}</h5>
+    <h5><p class="card-text">{{server.hostName}}</p></h5>
+    <a [routerLink]="['/server/'+server.id]" class="btn btn-primary">Go Server Page</a>
+  </div>
+</div>
+<div class="card-header"><h3>Template List</h3>
+  <button pButton [routerLink]="['template']" class="btn btn-outline-success btn-lg" type="button" icon="pi pi-search">
+    Add template
+  </button>
+</div>
+<div *ngFor="let device of deviceTemplates" class="card">
+  <div class="card-header">
+    {{device.id}}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">{{device.CLI_ADDRESS}}</h5>
+    <h5><p class="card-text">{{device.CLI_TRANSPORT}}</p></h5>
+    <a [routerLink]="['/server/'+device.id]" class="btn btn-primary">Go Server Page</a>
+  </div>
+</div>

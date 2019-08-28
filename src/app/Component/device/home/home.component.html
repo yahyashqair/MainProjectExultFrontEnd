@@ -2,53 +2,22 @@
   Device Home
   <br>
   <button type="button" class="btn btn-outline-primary btn-lg" (click)="showform()">Insert</button>
-<!--  <button type="button" class="btn btn-outline-success btn-lg">Update</button>-->
 </div>
 
 <form [formGroup]="deviceForm" (ngSubmit)="onSubmit()" class="form" *ngIf="showForm">
   <div class="form-group">
-    <label> IP Address:</label>
-    <input formControlName="CLI_ADDRESS" type="text" class="form-control" placeholder="Enter CLI_ADDRESS">
+    <label> Server : </label>
+    <p-dropdown [options]="servers" formControlName="serverId" [(ngModel)]="selectedServer"></p-dropdown>
   </div>
   <div class="form-group">
-    <label> Username:</label>
-    <input formControlName="CLI_LOGIN_USERNAME" type="password" class="form-control"
-           placeholder="Enter CLI_LOGIN_USERNAME">
-  </div>
-  <div class="form-group">
-    <label> Password:</label>
-    <input formControlName="CLI_LOGIN_PASSWORD" type="password" class="form-control"
-           placeholder="Enter CLI_LOGIN_PASSWORD">
-
-  </div>
-  <div class="form-group">
-    <label> Protocol:</label>
-    <p-dropdown [options]="transportType" formControlName="CLI_TRANSPORT" [(ngModel)]="selectedProtocol" (click)="selectProtocol($event)"></p-dropdown>
-    <!--    <input formControlName="CLI_TRANSPORT" type="text" class="form-control" placeholder="Enter CLI_TRANSPORT">-->
-  </div>
-  <div class="form-group">
-    <label> Port:</label>
-    <input formControlName="CLI_PORT" type="text" class="form-control" placeholder="Enter CLI_PORT">
+    <label> Template : </label>
+    <p-dropdown [options]="templates" formControlName="templateId" [(ngModel)]="selectedTemplate"></p-dropdown>
   </div>
 
-  <div class="form-group">
-    <label> SNMP Port:</label>
-    <input formControlName="SNMP_PORT" type="text" class="form-control" >
-  </div>
-  <div class="form-group">
-    <label> Read Community :</label>
-    <input formControlName="SNMP_READ_CS" type="password" class="form-control" placeholder="Enter Read Community ">
-  </div>
-  <div class="form-group">
-    <label> Enable Password :</label>
-    <input formControlName="CLI_ENABLE_PASSWORD" type="password" class="form-control"
-           placeholder="Enable Password">
-  </div>
   <button type="submit" class="btn btn-primary">Submit</button>
 </form>
 
 <p-messages [(value)]="msgs"></p-messages>
-
 
 <table class="table table-striped ">
   <thead class="thead-light">

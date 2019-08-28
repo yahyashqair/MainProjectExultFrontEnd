@@ -1,4 +1,7 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {Server, ServerService} from '../../Service/server/server.service';
+import {forEach} from '@angular/router/src/utils/collection';
+import {DeviceTemplate, TemplateService} from '../../Service/device/template.service';
 
 @Component({
   selector: 'app-home-page',
@@ -7,7 +10,17 @@ import { Component, OnInit } from '@angular/core';
 })
 export class HomePageComponent implements OnInit {
 
-  constructor() { }
+  constructor(serverService: ServerService, private templateService: TemplateService) {
+    serverService.getServers().subscribe(data => {
+      this.servers = data;
+    });
+    templateService.GetDevices().subscribe(data => {
+      this.deviceTemplates = data;
+    });
+  }
+
+  deviceTemplates: DeviceTemplate[];
+  servers: Server[];
 
   ngOnInit() {
   }

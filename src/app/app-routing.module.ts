@@ -20,6 +20,7 @@ import {DeviceInfoComponent} from './Component/Info/device-info/device-info.comp
 import {ServerHomeComponent} from './Component/server/server-home/server-home.component';
 import {ServerPageComponent} from './Component/server/server-page/server-page.component';
 import {HomePageComponent} from './Component/home-page/home-page.component';
+import {TemplateComponent} from './Component/device/template/template.component';
 const routes: Routes = [
   { path: 'xde', component: NxdeComponent },
   { path: 'xde/:id', component: XdeinfoComponent },
@@ -37,6 +38,7 @@ const routes: Routes = [
   { path: 'tree', component: TreeComponent },
   { path: 'server/:id', component: ServerPageComponent },
   { path: 'server', component: ServerHomeComponent },
+  { path: 'template', component: TemplateComponent },
   { path: '', component: HomePageComponent},
   { path: '**', component: ErrorlinkComponent }];
 

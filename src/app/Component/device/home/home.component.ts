@@ -5,6 +5,7 @@ import {Router} from '@angular/router';
 import {FormControl, FormGroup} from '@angular/forms';
 import {Message} from 'primeng/api';
 import {ServerService} from '../../../Service/server/server.service';
+import {TemplateService} from '../../../Service/device/template.service';
 
 @Component({
   selector: 'app-home',
@@ -14,30 +15,43 @@ import {ServerService} from '../../../Service/server/server.service';
 export class HomeComponent implements OnInit {
   devices: Device[];
   showForm: boolean;
-  transportType: any;
-  selectedType: any;
-  selectedProtocol: any;
+  templates: any[];
+  selectedTemplate: any;
+  servers: any[];
+  selectedServer: any;
+
   obj: any;
   msgs: Message[] = [];
   deviceForm = new FormGroup({
-    CLI_ADDRESS: new FormControl(''),
-    CLI_LOGIN_USERNAME: new FormControl(''),
-    CLI_LOGIN_PASSWORD: new FormControl(''),
-    CLI_PORT: new FormControl(''),
-    CLI_TRANSPORT: new FormControl('161'),
-    CLI_ENABLE_PASSWORD: new FormControl(''),
-    SNMP_READ_CS: new FormControl(''),
-    SNMP_PORT: new FormControl('')
+    serverId: new FormControl(''),
+    templateId: new FormControl('')
   });
 
 
-  constructor(private deviceService: DeviceService, private rout: Router,private serverService:ServerService) {
-    this.transportType = [
-      {label: 'Select City', value: null},
-      {label: 'Telnet', value: 'telnet'},
-      {label: 'SSH2', value: 'ssh2'},
-    ];
-    this.deviceForm.patchValue({SNMP_PORT: '161'});
+  constructor(private deviceService: DeviceService, private rout: Router, private serverService: ServerService, private templateService: TemplateService) {
+    templateService.GetDevices().subscribe(data => {
+      console.log('data is : ');
+      console.log(data);
+      this.templates = new Array();
+      this.templates.push({label: 'Select Templates', value: null});
+      for (let i = 0; i < data.length; i++) {
+        this.templates.push({label: data[i].CLI_ADDRESS, value: data[i].id});
+      }
+      console.log('objects:');
+      console.log(this.templates);
+    });
+    serverService.getServers().subscribe(data => {
+      console.log('data is : ');
+      console.log(data);
+      this.servers = new Array();
+      this.servers.push({label: 'Select Server', value: null});
+      for (let i = 0; i < data.length; i++) {
+        this.servers.push({label: data[i].ipAddress, value: data[i].id});
+      }
+      console.log('objects:');
+      console.log(this.servers);
+    });
+
   }
 
   show(type: string, msg: string) {
@@ -65,15 +79,17 @@ export class HomeComponent implements OnInit {
   }
 
   onSubmit() {
-    this.obj = this.deviceForm.value;
-    console.log(this.obj);
-    this.deviceService.addDevice(this.obj).subscribe(data => {
+    console.log(this.deviceForm);
+    this.deviceService.addDeviceFromServer(this.deviceForm.value.templateId, this.deviceForm.value.serverId);
+    /*
+    * .subscribe(data => {
         console.log(data);
         this.show('success', 'Add Successfully');
       },
       error => {
         this.show('danger', 'Error');
       });
+    * */
   }
 
   syncDevice(id: number) {
@@ -86,15 +102,6 @@ export class HomeComponent implements OnInit {
 
   }
 
-  selectProtocol(event) {
-    console.log(event);
-    console.log(this.selectedProtocol);
-    if (this.selectedProtocol === 'telnet') {
-      this.deviceForm.patchValue({CLI_PORT: '23'});
-    } else if (this.selectedProtocol === 'ssh2') {
-      this.deviceForm.patchValue({CLI_PORT: '22'});
-    }
-  }
 
   showform() {
     this.showForm = !this.showForm;
