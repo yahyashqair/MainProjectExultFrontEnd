@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Xde, GetXdesService } from 'src/app/Service/get-xdes.service';
-import { Router } from '@angular/router';
-import { SelectItem, LazyLoadEvent } from 'primeng/api';
+import {Component, OnInit} from '@angular/core';
+import {Xde, GetXdesService} from 'src/app/Service/get-xdes.service';
+import {Router} from '@angular/router';
+import {SelectItem, LazyLoadEvent} from 'primeng/api';
+import {ServerService} from '../../../Service/server/server.service';
 
 @Component({
   selector: 'app-nxde',
@@ -15,13 +16,15 @@ export class NxdeComponent implements OnInit {
   totalRecords: number;
   loading: boolean;
 
-  constructor(private xdeService: GetXdesService, private rout: Router) { }
+  constructor(private xdeService: GetXdesService, private rout: Router, private serverService: ServerService) {
+  }
 
   ngOnInit() {
     this.getData();
   }
+
   getData() {
-    this.xdeService.GetXdes(1, 4).subscribe(
+    this.xdeService.getXdesBelongTo(this.serverService.getCurrentServer(), 1, 4).subscribe(
       res => {
         this.xdes = res.content;
         this.totalRecords = res.totalElements;
@@ -44,14 +47,15 @@ export class NxdeComponent implements OnInit {
 
   loadCarsLazy(event: LazyLoadEvent) {
     this.loading = true;
-    console.log(event.first + " :first  ");
-    console.log(event.rows + " : rows # ");
-    this.xdeService.GetXdes(event.first / 4, 4).subscribe(res => {
+    console.log(event.first + ' :first  ');
+    console.log(event.rows + ' : rows # ');
+    this.xdeService.getXdesBelongTo(this.serverService.getCurrentServer(),event.first / 4, 4).subscribe(res => {
       this.xdes = res.content;
       this.totalRecords = res.totalElements;
       this.loading = false;
     });
   }
+
   selectprofile(event: Event, xde: Xde) {
     this.selectedXde = xde;
     this.displayDialog = true;
@@ -68,11 +72,20 @@ export class NxdeComponent implements OnInit {
     if (value.indexOf('!') === 0) {
       this.sortOrder = -1;
       this.sortField = value.substring(1, value.length);
-    }
-    else {
+    } else {
       this.sortOrder = 1;
       this.sortField = value;
     }
+  }
+
+  applySearch(value:String){
+    console.log("Enter");
+    this.xdeService.searchFunction(value).subscribe(
+      res => {
+        this.xdes = res;
+        console.log(res);
+      }, err => console.log(err)
+    );
   }
 
   onDialogHide() {

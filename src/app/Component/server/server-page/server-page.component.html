@@ -1,0 +1,68 @@
+<div class="card" *ngIf="exist">
+  <h1 style="text-align: center">Server Information Page</h1>
+  <button type="button" class="btn btn-outline-info btn-lg w-25 m-auto" (click)="readData()">Read Data </button>
+  <p-messages [(value)]="msgs"></p-messages>
+  <section>
+    <div class = "ui-g-6">    IP Address: </div>
+    <div class = "ui-g-6">    <label>{{server.ipAddress}}</label></div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      Host Name :
+    </div>
+    <div class = "ui-g-6">{{server.hostName}}</div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      username:
+    </div>
+    <div class="ui-g-6">
+      <label>{{server.username}}</label>
+    </div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      <label>password:</label>
+    </div>
+    <div class="ui-g-6">
+      <label>{{server.password}}</label>
+    </div>
+  </section>
+  <div> Data imported from this server </div>
+  <section>
+    <div class="ui-g-6">
+      <label>Xde:</label>
+    </div>
+    <div class="ui-g-6">
+      <label>{{this.numberOfXdes}}</label>
+    </div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      <label>Feature:</label>
+    </div>
+    <div class="ui-g-6">
+      <label>{{this.numberOfFeatures}}</label>
+    </div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      <label>Profile:</label>
+    </div>
+    <div class="ui-g-6">
+      <label>{{this.numberOfProfiles}}</label>
+    </div>
+  </section>
+  <section>
+    <div class="ui-g-6">
+      <label>Devices:</label>
+    </div>
+    <div class="ui-g-6">
+      <label>{{this.numberOfDevices}}</label>
+    </div>
+  </section>
+</div>
+
+<div *ngIf="!exist">
+  <h3>Sorry, device Does Not Exist</h3>
+</div>

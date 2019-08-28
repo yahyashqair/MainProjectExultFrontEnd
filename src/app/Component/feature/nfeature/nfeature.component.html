@@ -1,18 +1,65 @@
-<p-table [columns]="cols" [value]="features" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [paginator]="true" 
-    [rows]="10" [totalRecords]="totalRecords" [loading]="loading">
-    <ng-template pTemplate="header" let-columns>
-        <tr>
-            <th *ngFor="let col of columns">
-                {{col.id}}
-            </th>
-        </tr>
-    </ng-template>
-    
-    <ng-template pTemplate="body" let-rowData let-columns="columns">
-        <tr>
-            <td *ngFor="let col of columns">
-                {{rowData[col.field]}}
-            </td>
-        </tr>
-    </ng-template>
-</p-table>
+<div class="card-body row no-gutters align-items-center">
+
+  <div class="col">
+    <input class="form-control form-control-lg form-control-borderless" type="search" #search
+           (keyup)="applySearch(search.value)" placeholder="Search topics or keywords">
+  </div>
+  <!--end of col-->
+  <div class="col-auto">
+    <button class="btn btn-lg btn-success" type="submit">Search</button>
+  </div>
+  <!--end of col-->
+</div>
+<p-dataView #dv [value]="features" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [paginator]="true" [rows]="4" paginatorPosition="both" filterBy="brand">
+  <ng-template let-profile pTemplate="listItem">
+    <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
+      <div class="ui-g-12 ui-md-8 profile-details">
+        <div class="ui-g">
+          <div class="ui-g-2 ui-sm-6">feature Id : </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.id}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">feature Name: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.name}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">feature groupId: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.maven.groupId}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6">feature artifactId : </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.maven.artifactId}}</b></div>
+
+          <div class="ui-g-2 ui-sm-6"> last modify: </div>
+          <div class="ui-g-10 ui-sm-6"><b>{{profile.localDateTime}}</b></div>
+
+        </div>
+      </div>
+      <div class="ui-g-12 ui-md-1 search-icon">
+        <button pButton type="button" icon="pi pi-search" (click)="selectFeature($event, profile)">pop up</button>
+      </div>
+      <div class="ui-g-12 ui-md-1 search-icon">
+        <button pButton type="button" icon="pi pi-search" (click)="routeprofile(profile)">More Information</button>
+      </div>
+    </div>
+  </ng-template>
+  <ng-template let-profile pTemplate="gridItem">
+    <div style="padding:.5em" class="ui-g-12 ui-md-3">
+      <p-panel [header]="profile.vin" [style]="{'text-align':'center'}">
+        <div class="profile-detail">{{profile.id}} - {{profile.name}}</div>
+        <hr class="ui-widget-content" style="border-top:0">
+        <button pButton type="button" icon="pi pi-search" (click)="selectFeature($event, profile)" style="margin-top:0"></button>
+      </p-panel>
+    </div>
+  </ng-template>
+</p-dataView>
+
+<p-dialog header="profile Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="500" (onAfterHide)="onDialogHide()">
+  <div class="ui-g" *ngIf="selectedFeature">
+    <div class="ui-g-4">id: </div>
+    <div class="ui-g-8">{{selectedFeature.id}}</div>
+    <div class="ui-g-4">name: </div>
+    <div class="ui-g-8">{{selectedFeature.name}}</div>
+    <div class="ui-g-4">groupId: </div>
+    <div class="ui-g-8">{{selectedFeature.maven.groupId}}</div>
+    <div class="ui-g-4">artifactId: </div>
+    <div class="ui-g-8">{{selectedFeature.maven.artifactId}}</div>
+  </div>
+</p-dialog>

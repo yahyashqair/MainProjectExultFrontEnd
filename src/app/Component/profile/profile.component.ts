@@ -2,6 +2,7 @@ import {Component, OnInit} from '@angular/core';
 import {Profile, ProfileService} from 'src/app/Service/profile.service';
 import {ActivatedRoute, Router} from '@angular/router';
 import {debounceTime} from 'rxjs/operators';
+import {ServerService} from '../../Service/server/server.service';
 
 @Component({
   selector: 'app-profile',
@@ -24,7 +25,7 @@ export class ProfileComponent implements OnInit {
     this.size = value;
   }
 
-  constructor(private get: ProfileService, private route: ActivatedRoute,
+  constructor(private get: ProfileService, private serverService: ServerService, private route: ActivatedRoute,
               private router: Router) {
   }
 
@@ -38,7 +39,7 @@ export class ProfileComponent implements OnInit {
       this.pagenumber = 1;
       this.size = 10;
     }
-    this.get.getProfileWithPagination(this.pagenumber, this.size).subscribe(
+    this.get.getProilesBelongToServer(this.serverService.getCurrentServer(), this.pagenumber, this.size).subscribe(
       res => {
         this.res = res;
         this.profiles = res.content;

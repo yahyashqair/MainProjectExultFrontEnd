@@ -1,7 +1,8 @@
-import { Component, OnInit } from '@angular/core';
-import { Profile, ProfileService } from 'src/app/Service/profile.service';
-import { SelectItem, LazyLoadEvent } from 'primeng/api';
-import { Router } from '@angular/router';
+import {Component, OnInit} from '@angular/core';
+import {Profile, ProfileService} from 'src/app/Service/profile.service';
+import {SelectItem, LazyLoadEvent} from 'primeng/api';
+import {Router} from '@angular/router';
+import {ServerService} from '../../../Service/server/server.service';
 
 @Component({
   selector: 'app-n-profile',
@@ -14,16 +15,18 @@ export class NProfileComponent implements OnInit {
   totalRecords: number;
   loading: boolean;
 
-  constructor(private profileService: ProfileService, private rout: Router) { }
+  constructor(private profileService: ProfileService, private rout: Router, private serverService: ServerService) {
+  }
 
   ngOnInit() {
     this.getData();
   }
+
   getData() {
-    this.profileService.getProfileWithPagination(1,4).subscribe(
+    this.profileService.getProilesBelongToServer(this.serverService.getCurrentServer(), 1, 4).subscribe(
       res => {
         this.profiles = res.content;
-        this.totalRecords=res.totalElements
+        this.totalRecords = res.totalElements;
       }, err => console.log(err)
     );
   }
@@ -43,22 +46,23 @@ export class NProfileComponent implements OnInit {
 
   loadCarsLazy(event: LazyLoadEvent) {
     this.loading = true;
-    console.log(event.first+" :first  ");
-    console.log(event.rows+" : rows # ");
-    this.profileService.getProfileWithPagination(event.first/4, 4).subscribe(res => {
+    console.log(event.first + ' :first  ');
+    console.log(event.rows + ' : rows # ');
+    this.profileService.getProilesBelongToServer(this.serverService.getCurrentServer(), event.first / 4, 4).subscribe(res => {
       this.profiles = res.content;
-      this.totalRecords=res.totalElements;
+      this.totalRecords = res.totalElements;
       this.loading = false;
     });
-}
+  }
+
   selectprofile(event: Event, profile: Profile) {
     this.selectedprofile = profile;
     this.displayDialog = true;
     event.preventDefault();
   }
-  
+
   routeprofile(profile: Profile) {
-    this.rout.navigateByUrl('profile/'+profile.id);
+    this.rout.navigateByUrl('profile/' + profile.id);
   }
 
   onSortChange(event) {
@@ -67,13 +71,20 @@ export class NProfileComponent implements OnInit {
     if (value.indexOf('!') === 0) {
       this.sortOrder = -1;
       this.sortField = value.substring(1, value.length);
-    }
-    else {
+    } else {
       this.sortOrder = 1;
       this.sortField = value;
     }
   }
-
+  applySearch(value: String) {
+    console.log('Enter');
+    this.profileService.searchFunction(value).subscribe(
+      res => {
+        this.profiles = res;
+        console.log(res);
+      }, err => console.log(err)
+    );
+  }
   onDialogHide() {
     this.selectedprofile = null;
   }

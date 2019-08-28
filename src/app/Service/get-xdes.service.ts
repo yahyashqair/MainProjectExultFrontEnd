@@ -1,30 +1,39 @@
-import { Injectable } from '@angular/core';
-import { HttpClient } from '@angular/common/http';
+import {Injectable} from '@angular/core';
+import {HttpClient} from '@angular/common/http';
 
 @Injectable({
   providedIn: 'root'
 })
 export class GetXdesService {
-  getAllXdeUrl = "http://localhost:8080/xde/all/?";
-  getSearch = "http://localhost:8080/xde/search/";
+  getAllXdeUrl = 'http://localhost:8080/xde/all/?';
+  getSearch = 'http://localhost:8080/xde/search/';
+  getAllXdeUrlBelongTo = 'http://localhost:8080/xde/server/';
 
   id = 1;
-  xdeUrl = "http://localhost:8080/xde/";
+  xdeUrl = 'http://localhost:8080/xde/';
+
   GetXdes(pagenumber: number, pagesize: number) {
-    return this.http.get<XdePage>(this.getAllXdeUrl + "pagenumber=" + pagenumber + "&" + "size=" + pagesize);
+    return this.http.get<XdePage>(this.getAllXdeUrl + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
   }
+
+  getXdesBelongTo(idNumber, pagenumber: number, pagesize: number) {
+    return this.http.get<XdePage>(this.getAllXdeUrlBelongTo + idNumber + '/?' + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
+  }
+
 
   getXde(id: number) {
     return this.http.get<Xde>(this.xdeUrl + id);
   }
-  searchFunction(qstring:String){
-    return this.http.get<Xde[]>(this.getSearch+qstring);
+
+  searchFunction(qstring: String) {
+    return this.http.get<Xde[]>(this.getSearch + qstring);
   }
 
 
   constructor(private http: HttpClient) {
   }
 }
+
 export interface Xde {
   id: number;
   maven: Maven;
@@ -37,6 +46,7 @@ export interface XdePage {
   totalPages: number;
   number: number;
 }
+
 /*
     "totalElements": 725,
     "last": false,

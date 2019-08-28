@@ -1,4 +1,5 @@
-import { Component, OnInit } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
+import {ServerService} from '../../Service/server/server.service';
 
 @Component({
   selector: 'app-navbar',
@@ -6,8 +7,20 @@ import { Component, OnInit } from '@angular/core';
   styleUrls: ['./navbar.component.scss']
 })
 export class NavbarComponent implements OnInit {
+  server: any;
 
-  constructor() { }
+  constructor(private serverService: ServerService) {
+    this.getServer();
+    // this.server = this.serverService.getServer(this.serverService.serverId).subscribe(data => {
+    //   this.server = data.ipAddress;
+    // });
+  }
+
+  getServer() {
+    this.serverService.getCurrentServerUpdated().subscribe(data => {
+      this.server = data.ipAddress;
+    });
+  }
 
   ngOnInit() {
   }

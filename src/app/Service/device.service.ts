@@ -2,6 +2,9 @@ import {Injectable} from '@angular/core';
 import {Profile} from './profile.service';
 import {HttpClient} from '@angular/common/http';
 import {FormControl} from '@angular/forms';
+import {Server, ServerService} from './server/server.service';
+import {DeviceTemplate, TemplateService} from './device/template.service';
+import {Observable, Subject} from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
@@ -9,11 +12,13 @@ import {FormControl} from '@angular/forms';
 export class DeviceService {
 
   urlAllDevice = 'http://localhost:8080/device/';
+  urlAllDeviceBelongToServer = 'http://localhost:8080/device/server/';
   urlSync = 'http://localhost:8080/device/sync/';
   urlDevice = 'http://localhost:8080/device/';
+  subject: Subject<any> = new Subject();
 
   public GetDevices() {
-    return this.http.get<Device[]>(this.urlAllDevice);
+    return this.http.get<Device[]>(this.urlAllDeviceBelongToServer + this.serverService.getCurrentServer());
   }
 
   public syncDevice(id: number) {
@@ -25,10 +30,22 @@ export class DeviceService {
   }
 
   public addDevice(data: any) {
-    return this.http.post<Device[]>(this.urlDevice, data);
+    return this.http.post<Device[]>(this.urlDevice + this.serverService.getCurrentServer(), data);
   }
 
-  constructor(private http: HttpClient) {
+  public addDeviceFromServer(templateId: number, serverId: number) {
+    console.log(templateId + ' : ' + serverId);
+    this.templateService.getDevice(templateId).subscribe(data => {
+      return this.http.post<DeviceTemplate[]>(this.urlDevice + serverId, data).subscribe(data => {
+        console.log(data);
+      }, error => {
+        console.log(error);
+      });
+    });
+  }
+
+
+  constructor(private http: HttpClient, private serverService: ServerService, private templateService: TemplateService) {
   }
 }
 
