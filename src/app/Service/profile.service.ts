@@ -22,8 +22,8 @@ export class ProfileService {
     return this.http.get<Profile[]>(this.urlAllProfile);
   }
 
-  getProilesBelongToServer(id: number, pagenumber: number, pagesize: number) {
-    return this.http.get<ProfilePage>(this.urlAllProfileBelongToServer + this.serverService.getCurrentServer() + '/?' + 'pagenumber=' + pagenumber + '&' + 'size=' + pagesize);
+  getProilesBelongToServer(id: number, search: string, pageNumber: number, pagesize: number) {
+    return this.http.get<ProfilePage>(this.urlAllProfileBelongToServer + this.serverService.getCurrentServer() + '/' + search + '?' + 'pagenumber=' + pageNumber + '&' + 'size=' + pagesize);
   }
 
   getProfilesBelongToServer() {

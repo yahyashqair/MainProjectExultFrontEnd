@@ -42,17 +42,17 @@ export class ServerPageComponent implements OnInit {
       return;
     });
 
-    this.featureService.GetFeaturesBelongToServer(this.id, 1, 2).subscribe(data => {
-      this.numberOfFeatures = data.totalElements;
-    });
-
-    this.profileService.getProfilesBelongTo(this.id).subscribe(data => {
-      this.numberOfProfiles = data.length;
-    });
-
-    this.xdeService.getXdesBelongTo(this.id, 1, 2).subscribe(data => {
-      this.numberOfXdes = data.totalElements;
-    });
+    // this.featureService.GetFeaturesBelongToServer(this.id, this.searchQuery, 1, 2).subscribe(data => {
+    //   this.numberOfFeatures = data.totalElements;
+    // });
+    //
+    // this.profileService.getProfilesBelongTo(this.id).subscribe(data => {
+    //   this.numberOfProfiles = data.length;
+    // });
+    //
+    // this.xdeService.getXdesBelongTo(this.id, 1, 2).subscribe(data => {
+    //   this.numberOfXdes = data.totalElements;
+    // });
 
   }
 

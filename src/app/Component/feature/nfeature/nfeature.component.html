@@ -10,6 +10,19 @@
   </div>
   <!--end of col-->
 </div>
+<p-dialog header="profile Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="500" (onAfterHide)="onDialogHide()">
+  <div class="ui-g" *ngIf="selectedFeature">
+    <div class="ui-g-4">id: </div>
+    <div class="ui-g-8">{{selectedFeature.id}}</div>
+    <div class="ui-g-4">name: </div>
+    <div class="ui-g-8">{{selectedFeature.name}}</div>
+    <div class="ui-g-4">groupId: </div>
+    <div class="ui-g-8">{{selectedFeature.maven.groupId}}</div>
+    <div class="ui-g-4">artifactId: </div>
+    <div class="ui-g-8">{{selectedFeature.maven.artifactId}}</div>
+  </div>
+</p-dialog>
+
 <p-dataView #dv [value]="features" [totalRecords]="totalRecords" [loading]="loading" [lazy]="true" (onLazyLoad)="loadCarsLazy($event)" [paginator]="true" [rows]="4" paginatorPosition="both" filterBy="brand">
   <ng-template let-profile pTemplate="listItem">
     <div class="ui-g" style="padding: 2em;border-bottom: 1px solid #d9d9d9">
@@ -50,16 +63,3 @@
     </div>
   </ng-template>
 </p-dataView>
-
-<p-dialog header="profile Details" [(visible)]="displayDialog" [responsive]="true" showEffect="fade" [modal]="true" width="500" (onAfterHide)="onDialogHide()">
-  <div class="ui-g" *ngIf="selectedFeature">
-    <div class="ui-g-4">id: </div>
-    <div class="ui-g-8">{{selectedFeature.id}}</div>
-    <div class="ui-g-4">name: </div>
-    <div class="ui-g-8">{{selectedFeature.name}}</div>
-    <div class="ui-g-4">groupId: </div>
-    <div class="ui-g-8">{{selectedFeature.maven.groupId}}</div>
-    <div class="ui-g-4">artifactId: </div>
-    <div class="ui-g-8">{{selectedFeature.maven.artifactId}}</div>
-  </div>
-</p-dialog>

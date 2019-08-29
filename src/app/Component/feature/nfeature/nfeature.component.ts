@@ -23,6 +23,7 @@ export class NfeatureComponent implements OnInit {
 
   displayDialog: boolean;
 
+  searchQuery: string;
 
   sortKey: string;
 
@@ -34,14 +35,17 @@ export class NfeatureComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchQuery = '';
     this.getData();
   }
 
   getData() {
-    this.featureService.GetFeaturesBelongToServer(this.serverService.getCurrentServer(), 1, 4).subscribe(
-      data => {
-        this.features = data.content;
-        this.totalRecords = data.totalElements;
+    this.featureService.GetFeaturesBelongToServer(this.serverService.getCurrentServer(), this.searchQuery, 1, 4).subscribe(
+      res => {
+        this.features = res.content;
+        this.totalRecords = res.totalElements;
+        this.loading = false;
+        console.log(res.content);
       }, err => console.log(err)
     );
   }
@@ -51,7 +55,7 @@ export class NfeatureComponent implements OnInit {
     this.loading = true;
     console.log(event.first + ' :first  ');
     console.log(event.rows + ' : rows # ');
-    this.featureService.GetFeaturesBelongToServer(this.serverService.getCurrentServer(), event.first / 4, 4).subscribe(res => {
+    this.featureService.GetFeaturesBelongToServer(this.serverService.getCurrentServer(), this.searchQuery, event.first / 4, 4).subscribe(res => {
       this.features = res.content;
       this.totalRecords = res.totalElements;
       this.loading = false;
@@ -72,14 +76,9 @@ export class NfeatureComponent implements OnInit {
     this.selectedFeature = null;
   }
 
-  applySearch(value: String) {
-    console.log('Enter');
-    this.featureService.searchFunction(value).subscribe(
-      res => {
-        this.features = res;
-        console.log(res);
-      }, err => console.log(err)
-    );
+  applySearch(value: string) {
+    this.searchQuery = value;
+    this.getData();
   }
 
 

@@ -15,16 +15,18 @@ export class NxdeComponent implements OnInit {
   xdes: Xde[];
   totalRecords: number;
   loading: boolean;
+  searchQuery: string;
 
   constructor(private xdeService: GetXdesService, private rout: Router, private serverService: ServerService) {
   }
 
   ngOnInit() {
+    this.searchQuery = '';
     this.getData();
   }
 
   getData() {
-    this.xdeService.getXdesBelongTo(this.serverService.getCurrentServer(), 1, 4).subscribe(
+    this.xdeService.getXdesBelongTo(this.serverService.getCurrentServer(), this.searchQuery, 1, 4).subscribe(
       res => {
         this.xdes = res.content;
         this.totalRecords = res.totalElements;
@@ -49,7 +51,7 @@ export class NxdeComponent implements OnInit {
     this.loading = true;
     console.log(event.first + ' :first  ');
     console.log(event.rows + ' : rows # ');
-    this.xdeService.getXdesBelongTo(this.serverService.getCurrentServer(),event.first / 4, 4).subscribe(res => {
+    this.xdeService.getXdesBelongTo(this.serverService.getCurrentServer(), this.searchQuery, event.first / 4, 4).subscribe(res => {
       this.xdes = res.content;
       this.totalRecords = res.totalElements;
       this.loading = false;
@@ -68,7 +70,6 @@ export class NxdeComponent implements OnInit {
 
   onSortChange(event) {
     let value = event.value;
-
     if (value.indexOf('!') === 0) {
       this.sortOrder = -1;
       this.sortField = value.substring(1, value.length);
@@ -78,14 +79,9 @@ export class NxdeComponent implements OnInit {
     }
   }
 
-  applySearch(value:String){
-    console.log("Enter");
-    this.xdeService.searchFunction(value).subscribe(
-      res => {
-        this.xdes = res;
-        console.log(res);
-      }, err => console.log(err)
-    );
+  applySearch(value: string) {
+    this.searchQuery = value;
+    this.getData();
   }
 
   onDialogHide() {

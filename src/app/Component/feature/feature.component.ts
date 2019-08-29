@@ -36,17 +36,17 @@ export class FeatureComponent implements OnInit {
       this.pagenumber = 1;
       this.size = 10;
     }
-    this.get.GetFeaturesBelongToServer(this.serverService.getCurrentServer(), this.pagenumber, this.size).subscribe(
-      res => {
-        this.res = res;
-        this.features = res.content;
-      }, err => console.log(err)
-    );
+    // this.get.GetFeaturesBelongToServer(this.serverService.getCurrentServer(), this.pagenumber, this.size).subscribe(
+    //   res => {
+    //     this.res = res;
+    //     this.features = res.content;
+    //   }, err => console.log(err)
+    // );
   }
 
   applySearch(value: String) {
     console.log('Enter');
-    this.get.searchFunction(value).subscribe(
+    this.get.searchFunction(value, this.pagenumber, this.size).subscribe(
       res => {
         this.features = res;
         console.log(res);

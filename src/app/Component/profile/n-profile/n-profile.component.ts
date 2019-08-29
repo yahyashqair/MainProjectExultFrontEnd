@@ -15,15 +15,18 @@ export class NProfileComponent implements OnInit {
   totalRecords: number;
   loading: boolean;
 
+  searchQuery: string;
+
   constructor(private profileService: ProfileService, private rout: Router, private serverService: ServerService) {
   }
 
   ngOnInit() {
+    this.searchQuery = '';
     this.getData();
   }
 
   getData() {
-    this.profileService.getProilesBelongToServer(this.serverService.getCurrentServer(), 1, 4).subscribe(
+    this.profileService.getProilesBelongToServer(this.serverService.getCurrentServer(), this.searchQuery, 1, 4).subscribe(
       res => {
         this.profiles = res.content;
         this.totalRecords = res.totalElements;
@@ -48,7 +51,7 @@ export class NProfileComponent implements OnInit {
     this.loading = true;
     console.log(event.first + ' :first  ');
     console.log(event.rows + ' : rows # ');
-    this.profileService.getProilesBelongToServer(this.serverService.getCurrentServer(), event.first / 4, 4).subscribe(res => {
+    this.profileService.getProilesBelongToServer(this.serverService.getCurrentServer(), this.searchQuery, event.first / 4, 4).subscribe(res => {
       this.profiles = res.content;
       this.totalRecords = res.totalElements;
       this.loading = false;
@@ -76,15 +79,12 @@ export class NProfileComponent implements OnInit {
       this.sortField = value;
     }
   }
-  applySearch(value: String) {
-    console.log('Enter');
-    this.profileService.searchFunction(value).subscribe(
-      res => {
-        this.profiles = res;
-        console.log(res);
-      }, err => console.log(err)
-    );
+
+  applySearch(value: string) {
+    this.searchQuery = value;
+    this.getData();
   }
+
   onDialogHide() {
     this.selectedprofile = null;
   }

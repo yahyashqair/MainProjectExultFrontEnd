@@ -16,6 +16,7 @@ export class ProfileComponent implements OnInit {
   pagenumber: number;
   size: number;
   res: any;
+  searchQuery: string;
 
   update(value: number) {
     this.pagenumber = value;
@@ -30,6 +31,7 @@ export class ProfileComponent implements OnInit {
   }
 
   ngOnInit() {
+    this.searchQuery = '';
     this.sendRequest();
   }
 
@@ -39,7 +41,7 @@ export class ProfileComponent implements OnInit {
       this.pagenumber = 1;
       this.size = 10;
     }
-    this.get.getProilesBelongToServer(this.serverService.getCurrentServer(), this.pagenumber, this.size).subscribe(
+    this.get.getProilesBelongToServer(this.serverService.getCurrentServer(), this.searchQuery, this.pagenumber, this.size).subscribe(
       res => {
         this.res = res;
         this.profiles = res.content;
@@ -47,14 +49,8 @@ export class ProfileComponent implements OnInit {
     );
   }
 
-  applySearch(value: String) {
-    console.log('Enter');
-    this.get.searchFunction(value).subscribe(
-      res => {
-        this.profiles = res;
-        console.log(res);
-      }, err => console.log(err)
-    );
+  applySearch(value: string) {
+    this.searchQuery = value;
   }
 
 }
