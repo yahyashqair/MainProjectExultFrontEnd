@@ -41,6 +41,7 @@
     <th scope="col">host name</th>
     <th scope="col">IP Address</th>
     <th scope="col">Operation</th>
+    <th scope="col">Delete</th>
     <th scope="col">More Information</th>
 
 
@@ -55,6 +56,9 @@
     <td>{{ server.password }}</td>
 
     <td> <button pButton class="btn btn-outline-success btn-lg"type="button" icon="pi pi-search" (click)="selectServer(server)">Select Server</button>
+    </td>
+
+    <td> <button pButton class="btn btn-outline-danger btn-lg"type="button" icon="pi pi-search" (click)="deleteServer(server.id)">Delete Server</button>
     </td>
     <td>      <button pButton class="btn btn-outline-dark btn-lg"type="button" icon="pi pi-search" (click)="routeServer(server)">Server Page</button>
     </td>

@@ -36,8 +36,8 @@ export class DeviceService {
   public addDeviceFromServer(templateId: number, serverId: number) {
     console.log(templateId + ' : ' + serverId);
     this.templateService.getDevice(templateId).subscribe(data => {
-      return this.http.post<DeviceTemplate[]>(this.urlDevice + serverId, data).subscribe(data => {
-        console.log(data);
+      this.http.post<DeviceTemplate[]>(this.urlDevice + serverId, data).subscribe(d => {
+        console.log(d);
       }, error => {
         console.log(error);
       });

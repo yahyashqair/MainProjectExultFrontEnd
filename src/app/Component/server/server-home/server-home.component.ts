@@ -56,6 +56,7 @@ export class ServerHomeComponent implements OnInit {
     this.serverService.addServer(this.obj).subscribe(data => {
         console.log(data);
         this.show('success', 'Add Successfully');
+        this.sendRequest();
       },
       error => {
         this.show('danger', 'Error');
@@ -64,6 +65,13 @@ export class ServerHomeComponent implements OnInit {
 
   showform() {
     this.showForm = !this.showForm;
+  }
+
+  deleteServer(id: number) {
+    this.serverService.deleteServer(id).subscribe(data => {
+      console.log('Delete');
+      this.sendRequest();
+    });
   }
 
   selectServer(server: Server) {

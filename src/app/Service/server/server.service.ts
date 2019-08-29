@@ -14,7 +14,7 @@ export class ServerService {
   urlServer = 'http://localhost:8080/server/';
   serverId: number; // 0 Local else Not Local
   private subject = new Subject<any>();
-
+  // for value ip :
 
   public getServers() {
     return this.http.get<Server[]>(this.urlAllServer);
@@ -22,6 +22,10 @@ export class ServerService {
 
   public getServer(id: number) {
     return this.http.get<Server>(this.urlServer + id);
+  }
+
+  public deleteServer(id: number) {
+    return this.http.delete<Server>(this.urlServer + id);
   }
 
   public readData(id: number) {
